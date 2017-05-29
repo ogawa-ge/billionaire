@@ -18,10 +18,8 @@
 	<import resource="mvcContext.xml"/>
 	<!-- mybatis 設定 -->
 	<import resource="mybatisContext.xml"/>
-	<!-- velocity 設定
+	<!-- velocity 設定 -->
 	<import resource="velocityContext.xml"/>
-	webflow 設定
-	<import resource="webflowContext.xml"/> -->
 
 
   </beans>
