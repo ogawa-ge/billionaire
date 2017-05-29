@@ -13,8 +13,8 @@
       </dataSource>
     </environment>
   </environments>
-  <mappers>
-    <!-- Mapperファイルのパスを記述 -->
-    <mapper resource="datasource/employee/employee-mapper.xml"/>
-  </mappers>
+<!--   <mappers>
+    Mapperファイルのパスを記述
+    <mapper resource=""/>
+  </mappers> -->
 </configuration>

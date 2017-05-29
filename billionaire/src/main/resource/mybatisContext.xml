@@ -24,9 +24,5 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 
-	<bean id="employeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	  <property name="mapperInterface" value="datasource.employee.EmployeeMapper" />
-	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
 
   </beans>
