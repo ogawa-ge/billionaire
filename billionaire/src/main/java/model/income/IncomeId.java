@@ -21,7 +21,7 @@ public class IncomeId implements Serializable, Identifiable{
 
 	@Override
 	public String toString() {
-		return String.format("IncomeAmount [value=%s]", value);
+		return String.format("IncomeId [value=%s]", value);
 	}
 
 

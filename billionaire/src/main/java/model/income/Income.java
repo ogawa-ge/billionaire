@@ -2,9 +2,13 @@ package model.income;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 public class Income implements Serializable{
+	@Valid
 	private IncomeAmount incomeAmount;
 	private IncomeId incomeId;
+	@Valid
 	private IncomeRevenueDate incomeRevenueDate;
 
 	public Income(IncomeAmount incomeAmount, IncomeId incomeId, IncomeRevenueDate incomeRevenueDate){

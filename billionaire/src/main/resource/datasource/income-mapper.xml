@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.income.IncomeMapper">
+
+	<insert id="register" >
+		INSERT INTO account.income(
+			user_id,
+			amount,
+			revenue_date
+		)
+		VALUES(
+			#(userId.value),
+			#{income.incomeAmount.value},
+			#{income.incomeRevenue.value}
+		)
+	</insert>
+	<!-- <resultMap id="EmployeeSummaryResultMap" type="model.employee.EmployeeSummary">
+		<result property="employeeId.value" column="id" />
+		<result property="employeeName.value" column="name" />
+	</resultMap>
+	<select id="listOf" resultMap="EmployeeSummaryResultMap">
+		SELECT
+			employee.id,
+			employee_detail.name
+		FROM
+			employee_information.employee
+		INNER JOIN
+			employee_information.latest_employee_detail
+		ON
+			employee.id = latest_employee_detail.employee_id
+		INNER JOIN
+			employee_information.employee_detail
+		ON
+			latest_employee_detail.employee_detail_id = employee_detail.id
+	</select> -->
+
+
+</mapper>

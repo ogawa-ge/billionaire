@@ -10,7 +10,7 @@
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/spring_mybatis_webflow" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/billionaire" />
 		<property name="username" value="ogawa" />
 		<property name="password" value="genuine" />
 	</bean>
@@ -22,6 +22,11 @@
 
 	<bean class="org.mybatis.spring.SqlSessionTemplate" destroy-method="close">
 		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="incomeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.income.IncomeMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
 
