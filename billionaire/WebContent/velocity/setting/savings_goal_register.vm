@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Billionaire - 初期設定2/3</title>
+	</head>
+	<body>
+		<h2>システムを始める前の初期設定（2/3）</h2>
+			<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
+				<table>
+					<tr>
+						<th>毎月の貯金目標</th>
+						<td>#springFormInput("savingsGoal.savingsGoalAmount.value") 円</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>#springShowErrors("<br>" "color : red")</td>
+					</tr>
+				</table>
+			</form>
+			<form id="back_income" action="${link.contextURL}/register/income" method="post">
+			</form>
+			<button type="submit" form="back_income">中止</button>
+			<button type="submit" form="savings_goal_register">次へ</button>
+		</div>
+	</body>
+</html>
