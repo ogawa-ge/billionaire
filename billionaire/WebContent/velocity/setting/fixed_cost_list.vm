@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Billionaire - 初期設定2/3</title>
+	</head>
+	<body>
+		<h2>システムを始める前の初期設定（2/3）毎月の固定費の設定―リスト</h2>
+		<form action="${link.contextURL}/register/fixed_cost/list/new_fixed_cost" method="post">
+			<input type="submit" value="新しく固定費を登録する">
+		</form>
+		<table border="">
+			<tr>
+				<th>固定費合計金額</th>
+			</tr>
+			<tr>
+				<td colspan="2" >
+					合計金額 $!fixedCostTotal 円
+				</td>
+			</tr>
+		</table>
+		<table border>
+			<tr>
+				<th>固定費名</th>
+				<th>固定費額</th>
+			</tr>
+			#foreach($fixedCost in $!fixedCostList.fixedCostList)
+			<tr>
+				<td>$fixedCost.fixedCostName.value</td>
+				<td>$fixedCost.fixedCostAmount.value 円</td>
+				<td>
+					<form name="modify_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/modify/fixed_cost">
+						<a href="javascript:void(0)" onclick="document.modify_${fixedCost.fixedCostId.value}.submit();return false;">変更</a>
+						<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
+						#springFormHiddenInput("user")
+					</form>
+				</td>
+				<td>
+					<form name="delete_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/delete/fixed_cost">
+						<a href="javascript:void(0)" onclick="document.delete_${fixedCost.fixedCostId.value}.submit();return false;">削除</a>
+						<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
+						#springFormHiddenInput("user")
+					</form>
+				</td>
+			</tr>
+			#end
+		</table>
+		<form action="${link.contextURL}/register/fixed_cost/list/next" method="post">
+			<input type="submit" value="次へ">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.fixedcost.FixedCostMapper">
+
+	<resultMap id="FixedCostResultMap" type="model.fixedcost.FixedCost">
+		<id property="fixedCostId.value" column="id" />
+		<result property="fixedCostName.value" column="name" />
+		<result property="fixedCostAmount.value" column="amount" />
+	</resultMap>
+	<select id="listOf" resultMap="FixedCostResultMap">
+		SELECT
+			fixed_cost.id,
+			fixed_cost.name,
+			fixed_cost.amount
+		FROM
+			account.fixed_cost
+		WHERE
+			fixed_cost.user_id = ${userId.value}
+	</select>
+	<select id="findBy" resultMap="FixedCostResultMap">
+		SELECT
+			fixed_cost.id,
+			fixed_cost.name,
+			fixed_cost.amount
+		FROM
+			account.fixed_cost
+		WHERE
+			fixed_cost.id = ${fixedCostId}
+	</select>
+
+	<select id="findTotal" resultType="Integer">
+		SELECT
+			SUM(amount)
+		FROM
+			account.fixed_cost
+		WHERE
+			fixed_cost.user_id = ${userId.value}
+	</select>
+
+	<insert id="registerBy">
+		INSERT INTO account.fixed_cost(
+			user_id,
+			name,
+			amount
+		)
+		VALUES(
+			${userId.value},
+			#{fixedCost.fixedCostName.value},
+			${fixedCost.fixedCostAmount.value}
+		)
+	</insert>
+
+	<update id="modify">
+		UPDATE
+			account.fixed_cost
+		SET
+			name = #{fixedCost.fixedCostName.value},
+			amount = ${fixedCost.fixedCostAmount.value}
+		WHERE
+			id = ${fixedCost.fixedCostId.value}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM
+			account.fixed_cost
+		WHERE
+			id = ${fixedCostId}
+	</delete>
+</mapper>
