@@ -5,28 +5,28 @@
 		<title>Billionaire - 初期設定1/3</title>
 	</head>
 	<body>
-		<h2>システムを始める前の初期設定（1/3）</h2>
-			<form action="${link.contextURL}/register/income/execute" method="post">
-				<table>
-					<tr>
-						<th>1か月の収入金額</th>
-						<td>#springFormInput("income.incomeAmount.value") 円</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>#springShowErrors("<br>" "color : red")</td>
-					</tr>
-					<tr>
-						<th>毎月の所得日</th>
-						<td>#springFormInput("income.incomeRevenueDate.value") 日</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>#springShowErrors("<br>" "color : red")</td>
-					</tr>
-				</table>
-				<button type="submit">次へ</button>
-			</form>
-		</div>
+		<h2>システムを始める前の初期設定（1/3）1か月の収入の設定</h2>
+		<form  id="income_register" action="${link.contextURL}/register/income/execute" method="post">
+			<table>
+				<tr>
+					<th>1か月の収入金額</th>
+					<td>#springFormInput("income.incomeAmount.value") 円</td>
+				</tr>
+				<tr>
+					<td colspan="2">#springShowErrors("<br>" "color : red")</td>
+				</tr>
+				<tr>
+					<th>毎月の収入日</th>
+					<td>#springFormInput("income.incomeRevenueDate.value") 日</td>
+				</tr>
+				<tr>
+					<td colspan="2">#springShowErrors("<br>" "color : red")</td>
+				</tr>
+			</table>
+		</form>
+		<!-- <form id="escape" action="${link.contextURL}/register/income/test" method="post">
+		</form>
+		<button type="submit" form="escape">中止</button> -->
+		<button type="submit" form="income_register">次へ</button>
 	</body>
 </html>

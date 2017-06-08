@@ -28,6 +28,14 @@
 	  <property name="mapperInterface" value="datasource.income.IncomeMapper" />
 	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="savingsGoalMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.savings.goal.SavingsGoalMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="fixedCostMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.fixedcost.FixedCostMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 
   </beans>

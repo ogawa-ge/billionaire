@@ -2,26 +2,24 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Billionaire - 初期設定2/3</title>
+		<title>Billionaire - 初期設定3/3</title>
 	</head>
 	<body>
-		<h2>システムを始める前の初期設定（2/3）</h2>
-			<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
-				<table>
-					<tr>
-						<th>毎月の貯金目標</th>
-						<td>#springFormInput("savingsGoal.savingsGoalAmount.value") 円</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>#springShowErrors("<br>" "color : red")</td>
-					</tr>
-				</table>
-			</form>
-			<form id="back_income" action="${link.contextURL}/register/income" method="post">
-			</form>
-			<button type="submit" form="back_income">中止</button>
-			<button type="submit" form="savings_goal_register">次へ</button>
-		</div>
+		<h2>システムを始める前の初期設定（3/3）毎月の貯金目標の設定</h2>
+		<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
+			<table>
+				<tr>
+					<th>毎月の貯金目標</th>
+					<td>#springFormInput("savingsGoal.savingsGoalAmount.value") 円</td>
+				</tr>
+				<tr>
+					<td colspan="2">#springShowErrors("<br>" "color : red")</td>
+				</tr>
+			</table>
+		</form>
+		<!-- <form id="back_income" action="${link.contextURL}/register/income" method="post">
+		</form>
+		<button type="submit" form="back_income">戻る</button> -->
+		<button type="submit" form="savings_goal_register">登録完了</button>
 	</body>
 </html>
