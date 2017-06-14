@@ -14,7 +14,12 @@ public class IncomeDataAccess implements IncomeRepository{
 
 	@Override
 	public void register(Income income, UserId userId) {
-		incomeMapper.regiser(income, userId);
+		incomeMapper.register(income, userId);
+	}
+
+	@Override
+	public Income findBy(UserId userId) {
+		return incomeMapper.findBy(userId);
 	}
 
 }

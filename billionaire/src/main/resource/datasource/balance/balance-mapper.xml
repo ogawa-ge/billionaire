@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.balance.BalanceMapper">
+
+	<select id="differenceCalc" resultType="model.balance.BalanceAmount">
+		SELECT
+			(income.amount - savings_goal.amount - sum(fixed_cost.amount))
+		FROM
+			account.income
+		INNER JOIN
+			account.savings_goal
+		ON
+			income.user_id = savings_goal.user_id
+		INNER JOIN
+			account.fixed_cost
+		ON
+			income.user_id = fixed_cost.user_id
+		WHERE
+			income.user_id = #{userId.value}
+		GROUP BY
+			income.amount,
+			savings_goal.amount
+	</select>
+
+	<resultMap id="BalanceResultMap" type="model.balance.Balance">
+		<id property="balanceId.value" column="id" />
+		<result property="balanceMonth.value" column="month" />
+		<result property="balanceAmount.value" column="amount" />
+	</resultMap>
+	<select id="findBy" resultMap="BalanceResultMap">
+		SELECT
+			balance.id,
+			balance.month,
+			balance.amount
+		FROM
+			account.balance
+		WHERE
+			balance.user_id = #{userId.value}
+	</select>
+
+	<insert id="register">
+		INSERT INTO account.balance(
+			user_id,
+			month,
+			amount
+		)VALUES(
+			#{userId.value},
+			#{balanceMonth.value},
+			#{balanceAmount.value}
+		)
+
+	</insert>
+
+	<update id="modify">
+		UPDATE
+			account.balance
+		SET
+			month = #{balanceMonth.value},
+			amount = #{balanceAmount.value}
+		WHERE
+			user_id = #{userId.value}
+	</update>
+
+</mapper>

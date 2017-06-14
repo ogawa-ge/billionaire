@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Billionaire - 固定費編集</title>
+	</head>
+	<body>
+		<h2>毎月の固定費の編集</h2>
+		<h3>現在の設定</h3>
+		<table border="">
+			<tr>
+				<th>固定費名</th>
+				<td>$fixedCost.fixedCostName.value</td>
+			</tr>
+			<tr>
+				<th>固定費額</th>
+				<td>$fixedCost.fixedCostAmount.value 円</td>
+			</tr>
+		</table>
+		<br>
+
+		<h3>変更したい値を入力してください。</h3>
+		<form  id="fixedCost_modify" action="${link.contextURL}/modify/fixed_cost/execute" method="post">
+			#springFormHiddenInput("fixedCost.fixedCostId.value")
+			#parse("setting/fixed_cost_register_table.vm")
+		</form>
+		<form id="escape" action="${link.contextURL}/register/fixed_cost/list" method="post">
+			#springFormHiddenInput("user")
+		</form>
+		<button type="submit" form="escape">もどる</button>
+		<button type="submit" form="fixedCost_modify">編集完了</button>
+	</body>
+</html>

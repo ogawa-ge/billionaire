@@ -4,5 +4,5 @@ import model.fixedcost.FixedCost;
 import model.user.UserId;
 
 public interface FixedCostRegisterService {
-	public void registerBy(FixedCost fixedCost, UserId userId);
+	public void register(FixedCost fixedCost, UserId userId);
 }

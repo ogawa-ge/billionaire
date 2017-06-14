@@ -37,16 +37,16 @@
 			fixed_cost.user_id = ${userId.value}
 	</select>
 
-	<insert id="registerBy">
+	<insert id="register">
 		INSERT INTO account.fixed_cost(
 			user_id,
 			name,
 			amount
 		)
 		VALUES(
-			${userId.value},
+			#{userId.value},
 			#{fixedCost.fixedCostName.value},
-			${fixedCost.fixedCostAmount.value}
+			#{fixedCost.fixedCostAmount.value}::integer
 		)
 	</insert>
 
@@ -55,15 +55,15 @@
 			account.fixed_cost
 		SET
 			name = #{fixedCost.fixedCostName.value},
-			amount = ${fixedCost.fixedCostAmount.value}
+			amount = #{fixedCost.fixedCostAmount.value}::integer
 		WHERE
-			id = ${fixedCost.fixedCostId.value}
+			id = #{fixedCost.fixedCostId.value}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM
 			account.fixed_cost
 		WHERE
-			id = ${fixedCostId}
+			id = #{fixedCostId}
 	</delete>
 </mapper>

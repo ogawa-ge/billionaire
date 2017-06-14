@@ -13,8 +13,14 @@ public class SavingsGoalDataAccess implements SavingsGoalRepository{
 	SavingsGoalMapper savingsGoalMapper;
 
 	@Override
-	public void registerBy(SavingsGoal savingsGoal, UserId userId) {
-		savingsGoalMapper.registerBy(savingsGoal, userId);
+	public void register(SavingsGoal savingsGoal, UserId userId) {
+		savingsGoalMapper.register(savingsGoal, userId);
 	}
+
+	@Override
+	public SavingsGoal findBy(UserId userId) {
+		return savingsGoalMapper.findBy(userId);
+	}
+
 
 }

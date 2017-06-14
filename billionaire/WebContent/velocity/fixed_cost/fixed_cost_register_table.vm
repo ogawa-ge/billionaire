@@ -1,0 +1,16 @@
+<table>
+	<tr>
+		<th>固定費名</th>
+		<td>#springFormInput("fixedCost.fixedCostName.value")</td>
+	</tr>
+	<tr>
+		<td colspan="2">#springShowErrors("<br>" "color : red")</td>
+	</tr>
+	<tr>
+		<th>固定費額</th>
+		<td>#springFormInput("fixedCost.fixedCostAmount.value") 円</td>
+	</tr>
+	<tr>
+		<td colspan="2">#springShowErrors("<br>" "color : red")</td>
+	</tr>
+</table>

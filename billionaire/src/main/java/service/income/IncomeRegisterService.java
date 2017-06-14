@@ -4,5 +4,5 @@ import model.income.Income;
 import model.user.UserId;
 
 public interface IncomeRegisterService {
-	public void registerBy(Income income, UserId userId);
+	public void register(Income income, UserId userId);
 }

@@ -3,11 +3,10 @@ package web.fixedcost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import model.user.User;
 import service.fixedcost.FixedCostListingService;
@@ -20,22 +19,20 @@ public class FixedCostListContoroller {
 	private FixedCostListingService fixedCostListingService;
 
 	@RequestMapping
-	public String listing(Model model, @ModelAttribute("user") User user){
-/*テスト用
-user.userId().setValue(1);*/
+	public String listing(Model model, WebRequest webRequest ){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "forward:../../login";
+		}
+
+		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
+
 		model.addAttribute("fixedCostList", fixedCostListingService.listOf(user.userId()));
 		model.addAttribute("fixedCostTotal", fixedCostListingService.findTotal(user.userId()));
-		return "setting/fixed_cost_list";
+		return "fixed_cost/fixed_cost_list";
 	}
-	@RequestMapping(value="new_fixed_cost", method=RequestMethod.POST)
-	public String register(Model model, User user, RedirectAttributes redirectAttributes){
-		model.addAttribute("fixedCostList", fixedCostListingService.listOf(user.userId()));
-		redirectAttributes.addFlashAttribute("user", user);
-		return "redirect:../";
-	}
+
 	@RequestMapping(value="next", method=RequestMethod.POST)
-	public String next(Model model, User user, RedirectAttributes redirectAttributes){
-		redirectAttributes.addFlashAttribute("user", user);
+	public String next(Model model, User user){
 		return "redirect:../../savings_goal";
 	}
 

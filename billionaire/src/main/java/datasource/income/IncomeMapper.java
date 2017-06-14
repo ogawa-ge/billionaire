@@ -6,5 +6,6 @@ import model.income.Income;
 import model.user.UserId;
 
 public interface IncomeMapper {
-	public void regiser(@Param("income") Income income, @Param("userId") UserId userId);
+	public void register(@Param("income") Income income, @Param("userId") UserId userId);
+	public Income findBy(@Param("userId") UserId userId);
 }

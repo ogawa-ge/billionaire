@@ -7,14 +7,14 @@ import model.income.Income;
 import model.income.IncomeRepository;
 import model.user.UserId;
 
-@Service("incomeRegisterService")
-public class IncomeRegisterServiceImpl implements IncomeRegisterService{
+@Service("incomeFindService")
+public class IncomeFindServiceImpl implements IncomeFindService{
 	@Autowired
 	private IncomeRepository incomeRepository;
 
 	@Override
-	public void register(Income income, UserId userId) {
-		incomeRepository.register(income, userId);
+	public Income findBy(UserId userId) {
+		return incomeRepository.findBy(userId);
 	}
 
 }

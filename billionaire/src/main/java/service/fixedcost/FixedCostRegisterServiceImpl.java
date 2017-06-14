@@ -13,8 +13,8 @@ public class FixedCostRegisterServiceImpl implements FixedCostRegisterService{
 	private FixedCostRepository fixedCostRepository;
 
 	@Override
-	public void registerBy(FixedCost fixedCost, UserId userId) {
-		fixedCostRepository.registerBy(fixedCost, userId);
+	public void register(FixedCost fixedCost, UserId userId) {
+		fixedCostRepository.register(fixedCost, userId);
 	}
 
 }

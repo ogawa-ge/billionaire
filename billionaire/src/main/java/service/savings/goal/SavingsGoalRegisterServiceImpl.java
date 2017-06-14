@@ -13,8 +13,8 @@ public class SavingsGoalRegisterServiceImpl implements SavingsGoalRegisterServic
 	SavingsGoalRepository savingsGoalRepository;
 
 	@Override
-	public void registerBy(SavingsGoal savingsGoal, UserId userId) {
-		savingsGoalRepository.registerBy(savingsGoal, userId);
+	public void register(SavingsGoal savingsGoal, UserId userId) {
+		savingsGoalRepository.register(savingsGoal, userId);
 	}
 
 }

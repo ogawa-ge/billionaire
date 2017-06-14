@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Billionaire - 初期設定2/3</title>
+	</head>
+	<body>
+		<h2>システムを始める前の初期設定（2/3）毎月の固定費の設定―登録</h2>
+		<form  id="fixedCost_register" action="${link.contextURL}/register/fixed_cost/execute" method="post">
+			#parse("fixed_cost/fixed_cost_register_table.vm")
+		</form>
+		<form id="escape" action="${link.contextURL}/register/fixed_cost/list" method="post">
+			#springFormHiddenInput("user")
+		</form>
+		<button type="submit" form="escape">もどる</button>
+		<button type="submit" form="fixedCost_register">登録</button>
+	</body>
+</html>

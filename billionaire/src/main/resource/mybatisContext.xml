@@ -36,6 +36,22 @@
 	  <property name="mapperInterface" value="datasource.fixedcost.FixedCostMapper" />
 	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="UserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.user.UserMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="BalanceMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.balance.BalanceMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="DailyBudgetMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.dailybudget.DailyBudgetMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="ExpenseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="datasource.expense.ExpenseMapper" />
+	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 
   </beans>

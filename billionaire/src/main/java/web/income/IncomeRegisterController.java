@@ -10,35 +10,37 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import model.income.Income;
 import model.income.IncomeFactory;
 import model.user.User;
+import service.income.IncomeCheckService;
 import service.income.IncomeRegisterService;
 
-@Controller
+@Controller("incomeRegisterController")
 @RequestMapping(value="register/income")
 @SessionAttributes("user")
 public class IncomeRegisterController {
 	@Autowired
-	IncomeRegisterService incomeRegisterService;
+	private IncomeRegisterService incomeRegisterService;
 	@Autowired
-	IncomeFactory incomeFactory;
+	private IncomeFactory incomeFactory;
+	@Autowired
+	private IncomeCheckService incomeCheckService;
 
 
-	@RequestMapping(value="test")
-	public String helthCheck( Model model ){
-		model.addAttribute("sample_test", "OK!!!");
-		return "sample";
-	}
 
 	@RequestMapping
-	public String register( Model model ){
+	public String register( Model model, WebRequest webRequest ){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "forward:../login";
+		}
+		/*毎月の収入が設定されているか判定*/
+		if(incomeCheckService.isExists(((User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION)).userId())) return "redirect:../savings_goal";
 
-		/*テスト用
-		User user = new User(new UserId(1), new UserMail("test@genuine-pt.jp"), new UserName("テスト"), new UserPassword("genuine"));*/
 		model.addAttribute("income", incomeFactory.create());
-		return "setting/income_register";
+		return "income/income_register";
 
 	}
 
@@ -46,13 +48,13 @@ public class IncomeRegisterController {
 	public String registerExecute( Model model,@Valid @ModelAttribute("income") Income income, Errors errors, User user){
 
 		if(errors.hasErrors()){
-			return "setting/income_register";
+			return "income/income_register";
 		}
 
 		/* 収入を登録 */
 		incomeRegisterService.register(income, user.userId());
 
-		return "redirect:../savings_goal";
+		return "redirect:../fixed_cost/list";
 
 	}
 

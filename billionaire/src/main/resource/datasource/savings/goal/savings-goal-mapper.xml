@@ -2,15 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="datasource.savings.goal.SavingsGoalMapper">
 
-	<insert id="registerBy" >
+	<insert id="register" >
 		INSERT INTO account.savings_goal(
 			user_id,
 			amount
 		)
 		VALUES(
-			${userId.value},
-			${savingsGoal.savingsGoalAmount.value}
+			#{userId.value},
+			#{savingsGoal.savingsGoalAmount.value}::integer
 		)
 	</insert>
+
+	<resultMap id="SavingsGoalResultMap" type="model.savings.goal.SavingsGoal">
+		<id property="savingsGoalId.value" column="id" />
+		<result property="savingsGoalAmount.value" column="amount" />
+	</resultMap>
+	<select id="findBy" resultMap="SavingsGoalResultMap">
+		SELECT
+			savings_goal.id,
+			savings_goal.amount
+		FROM
+			account.savings_goal
+		WHERE
+			savings_goal.user_id = #{userId.value}
+	</select>
 
 </mapper>

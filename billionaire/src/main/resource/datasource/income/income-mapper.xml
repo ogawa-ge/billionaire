@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="datasource.income.IncomeMapper">
 
-	<insert id="registerBy" >
+	<insert id="register" >
 		INSERT INTO account.income(
 			user_id,
 			amount,
@@ -15,6 +15,21 @@
 		)
 	</insert>
 
+	<resultMap id="IncomeResultMap" type="model.income.Income">
+		<id property="incomeId.value" column="id" />
+		<result property="incomeAmount.value" column="amount" />
+		<result property="incomeRevenueDate.value" column="revenue_date" />
+	</resultMap>
+	<select id="findBy" resultMap="IncomeResultMap">
+		SELECT
+			income.id,
+			income.amount,
+			income.revenue_date
+		FROM
+			account.income
+		WHERE
+			income.user_id = #{userId.value}
+	</select>
 
 
 </mapper>

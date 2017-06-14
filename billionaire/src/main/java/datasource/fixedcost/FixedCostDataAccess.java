@@ -19,8 +19,8 @@ public class FixedCostDataAccess implements FixedCostRepository{
 	}
 
 	@Override
-	public void registerBy(FixedCost fixedCost, UserId userId) {
-		fixedCostMapper.registerBy(fixedCost, userId);
+	public void register(FixedCost fixedCost, UserId userId) {
+		fixedCostMapper.register(fixedCost, userId);
 	}
 
 	@Override
