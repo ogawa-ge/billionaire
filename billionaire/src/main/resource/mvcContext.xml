@@ -18,6 +18,10 @@
 	</bean> -->
 
 	<mvc:annotation-driven validator="validator" />
+	<mvc:resources location="/bootstrap-3.3.7-dist/" mapping="/bootstrap-3.3.7-dist/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
 
 	<bean id="messageSource"
 				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

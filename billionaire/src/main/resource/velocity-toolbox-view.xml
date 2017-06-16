@@ -7,5 +7,6 @@
 		<tool class="org.apache.velocity.tools.generic.DateTool" />
 		<tool class="org.apache.velocity.tools.generic.NumberTool" />
 		<tool class="org.apache.velocity.tools.generic.DisplayTool" />
+		<tool class="org.apache.velocity.tools.generic.EscapeTool" />
 	</toolbox>
 </tools>
