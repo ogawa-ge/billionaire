@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.user.UserMapper">
+
+	<resultMap id="UserResultMap" type="model.user.User">
+		<id property="userId.value" column="id" />
+		<result property="userMail.value" column="mail" />
+		<result property="userName.value" column="name" />
+		<result property="userPassword.value" column="password" />
+	</resultMap>
+	<select id="findBy" resultMap="UserResultMap">
+		SELECT
+			id,
+			mail,
+			name,
+			password
+		FROM
+			account.user
+		WHERE
+			mail = #{userMail.value}
+		AND
+			password = #{userPassword.value}
+	</select>
+
+
+
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.dailybudget.DailyBudgetMapper">
+
+	<resultMap id="DailyBudgetResultMap" type="model.dailybudget.DailyBudget">
+		<id property="dailyBudgetId.value" column="id" />
+		<result property="dailyBudgetDate.value" column="date" />
+		<result property="budget.value" column="budget" />
+	</resultMap>
+	<select id="findBy" resultMap="DailyBudgetResultMap">
+		SELECT
+			daily_budget.id,
+			daily_budget.date,
+			daily_budget.budget
+		FROM
+			account.daily_budget
+		WHERE
+			daily_budget.user_id = #{userId.value}
+		AND
+			daily_budget.date = #{dailyBudgetDate.value}::date
+	</select>
+
+	<insert id="register">
+		INSERT INTO account.daily_budget(
+			user_id,
+			date,
+			budget
+		)VALUES(
+			#{userId.value},
+			#{dailyBudgetDate.value}::date,
+			#{budget.value}::integer
+		)
+	</insert>
+
+	<update id="modify">
+		UPDATE
+			account.daily_budget
+		SET
+			budget = (
+						SELECT
+							(budget - #{expenseAmount.value}::integer)
+						FROM
+							account.daily_budget
+						WHERE
+							id = #{dailyBudgetId.value}
+					)
+		WHERE
+			id = #{dailyBudgetId.value}
+	</update>
+
+	<resultMap id="DailyBudgetLastIdResultMap" type="model.dailybudget.DailyBudgetId">
+		<id property="value" column="last_id" />
+	</resultMap>
+	<select id="findLastId" resultMap="DailyBudgetLastIdResultMap">
+		SELECT
+			MAX(id) AS last_id
+		FROM
+			account.daily_budget
+		WHERE
+			user_id = #{userId.value}
+	</select>
+
+	<resultMap id="CalendarDailyDetailResultMap" type="model.calendar.CalendarDailyDetail">
+		<result property="calendarDetailDate.year" column="year" />
+		<result property="calendarDetailDate.month" column="month" />
+		<result property="calendarDetailDate.day" column="day" />
+		<result property="budget.value" column="budget" />
+	</resultMap>
+	<select id="listOf" resultMap="CalendarDailyDetailResultMap">
+		SELECT
+			TO_CHAR(date, 'yyyy') AS year,
+			TO_CHAR(date, 'MM') AS month,
+			TO_CHAR(date, 'dd') AS day,
+			budget
+		FROM
+			account.daily_budget
+		WHERE
+			user_id = #{userId.value}
+		AND
+			date = #{date}::date
+	</select>
+</mapper>

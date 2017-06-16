@@ -14,7 +14,7 @@ import service.fixedcost.FixedCostListingService;
 @Controller("fixedCostListContoroller")
 @SessionAttributes("user")
 @RequestMapping("register/fixed_cost/list")
-public class FixedCostListContoroller {
+public class FixedCostListingContoroller {
 	@Autowired
 	private FixedCostListingService fixedCostListingService;
 

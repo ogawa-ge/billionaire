@@ -29,6 +29,7 @@ public class User implements Serializable{
 	public UserId userId(){
 		return userId;
 	}
+
 	@Deprecated
 	public UserId getUserId(){
 		return userId;

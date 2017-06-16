@@ -2,27 +2,27 @@ package model.income;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import model.primitiv.Identifiable;
+import org.hibernate.validator.constraints.NotBlank;
 
-public class IncomeRevenueDate implements Serializable, Identifiable{
-	@NotNull(message="毎月の所得日を入力してください。")
-	@Min(value=1, message="毎月の所得日は{value}以上の数字で入力してください。")
-	@Max(value=31, message="毎月の所得日は{value}以下の数字で入力してください。")
-	private Integer value;
+public class IncomeRevenueDate implements Serializable{
+	@NotBlank(message="毎月の所得日を入力してください。")
+	@Pattern(regexp="^\\d(0?[1-9]|[1-2][0-9]|3[0-1])$", message="毎月の所得日を01～31日の間で入力してください。")
+	private String value;
 
-	public IncomeRevenueDate(Integer value){ this.value = value; }
-	public IncomeRevenueDate(){ value = ID_EMPTY; }
+	public IncomeRevenueDate(String value){ this.value = value; }
+	public IncomeRevenueDate(){ value = ""; }
 
+	public String value(){
+		return value;
+	}
 	@Deprecated
-	public void setValue(Integer value){
+	public void setValue(String value){
 		this.value = value;
 	}
 	@Deprecated
-	public Integer getValue(){
+	public String getValue(){
 		return value;
 	}
 

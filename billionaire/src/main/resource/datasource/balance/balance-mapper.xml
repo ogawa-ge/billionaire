@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="datasource.balance.BalanceMapper">
 
-	<select id="differenceCalc" resultType="model.balance.BalanceAmount">
+	<resultMap id="BalanceAmountMap" type="model.balance.BalanceAmount">
+		<id property="value" column="amount" />
+	</resultMap>
+	<select id="differenceCalc" resultMap="BalanceAmountMap">
 		SELECT
-			(income.amount - savings_goal.amount - sum(fixed_cost.amount))
+			(income.amount - savings_goal.amount - sum(fixed_cost.amount)) AS amount
 		FROM
 			account.income
 		INNER JOIN
@@ -51,12 +54,20 @@
 
 	</insert>
 
+	<update id="modifyAmount">
+		UPDATE
+			account.balance
+		SET
+			amount = #{balanceAmount.value}::integer
+		WHERE
+			user_id = #{userId.value}
+	</update>
 	<update id="modify">
 		UPDATE
 			account.balance
 		SET
-			month = #{balanceMonth.value},
-			amount = #{balanceAmount.value}
+			amount = #{balanceAmount.value}::integer,
+			month = #{balanceMonth.value}::integer
 		WHERE
 			user_id = #{userId.value}
 	</update>

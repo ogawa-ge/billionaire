@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Billionaire - 本日の出費編集</title>
+	</head>
+	<body>
+		<h2>本日の出費編集</h2>
+		<table border="">
+			<tr>
+				<th>出費名</th>
+				<td>$expense.expenseName.value</td>
+				<th>出費カテゴリ</th>
+				<td>$expense.expenseCategory.label</td>
+			</tr>
+			<tr>
+				<th>出費額</th>
+				<td>$expense.expenseAmount.value 円</td>
+			</tr>
+			<tr>
+				<th>備考</th>
+				<td colspan="3">$expense.expenseMemo.value</td>
+			</tr>
+		</table>
+		<br>
+
+		<h3>変更したい値を入力してください。</h3>
+		<form  id="expense_modify" action="${link.contextURL}/expense/modify/execute" method="post">
+			#springFormHiddenInput("expense.expenseId.value")
+			#parse("expense/expense_register_table.vm")
+		</form>
+		<form id="escape" action="${link.contextURL}/expense/list" method="post">
+			#springFormHiddenInput("user")
+		</form>
+		<button type="submit" form="escape">もどる</button>
+		<button type="submit" form="expense_modify">編集完了</button>
+	</body>
+</html>

@@ -30,6 +30,11 @@ public class BalanceDataAccess implements BalanceRepository{
 	}
 
 	@Override
+	public void modifyAmount(UserId userId, BalanceAmount balanceAmount) {
+		balanceMapper.modifyAmount(userId, balanceAmount);
+	}
+
+	@Override
 	public void modify(UserId userId, BalanceAmount balanceAmount, BalanceMonth balanceMonth) {
 		balanceMapper.modify(userId, balanceAmount, balanceMonth);
 	}

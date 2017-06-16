@@ -2,7 +2,12 @@ package model.user;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class UserName implements Serializable{
+	@NotBlank(message="名前を入力してください。")
+	@Length(min=1, max=50, message="名前を{min}から{max}文字以内で入力してください。")
 	private String value;
 
 	public UserName(String value){ this.value = value; }

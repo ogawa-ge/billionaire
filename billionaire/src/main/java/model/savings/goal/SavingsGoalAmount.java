@@ -2,32 +2,31 @@ package model.savings.goal;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 
 import model.primitiv.Identifiable;
 
 public class SavingsGoalAmount implements Serializable, Identifiable{
 	//TODO 貯金額と収入額の差のアノテーションを作成する
 	@NotNull(message="毎月の貯金目標が入力されておりません。")
-	@Min(value=0, message="毎月の貯金目標を{value}以上の数字で入力してください。")
-	@Max(value=2147483647, message="毎月の貯金目標を{value}以下の数字で入力してください。")
-	private Integer value;
+	@Range(min=0, max=2147483647, message="正しい貯金目標を入力してください。")
+	private String value;
 
-	public SavingsGoalAmount(Integer value){
+	public SavingsGoalAmount(String value){
 		this.value = value;
 	}
 	public SavingsGoalAmount(){
-		value = ID_EMPTY;
+		value = "";
 	}
 
 	@Deprecated
-	public void setValue(Integer value){
+	public void setValue(String value){
 		this.value = value;
 	}
 	@Deprecated
-	public Integer getValue(){
+	public String getValue(){
 		return value;
 	}
 

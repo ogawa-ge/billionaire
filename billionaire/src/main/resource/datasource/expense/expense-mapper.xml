@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.expense.ExpenseMapper">
+
+	<insert id="register">
+		INSERT INTO account.expense(
+			daily_budget_id,
+			category_type,
+			name,
+			amount,
+			memo
+		)
+		VALUES(
+			#{dailyBudgetId.value},
+			#{expense.expenseCategory},
+			#{expense.expenseName.value},
+			#{expense.expenseAmount.value}::integer,
+			#{expense.expenseMemo.value}
+		)
+	</insert>
+
+	<resultMap id="ExpenseResultMap" type="model.expense.Expense">
+		<id property="expenseId.value" column="id"/>
+		<result property="expenseCategory" column="category_type"/>
+		<result property="expenseName.value" column="name"/>
+		<result property="expenseAmount.value" column="amount"/>
+		<result property="expenseMemo.value" column="memo"/>
+	</resultMap>
+	<select id="listOf" resultMap="ExpenseResultMap">
+		SELECT
+			expense.id,
+			expense.category_type,
+			expense.name,
+			expense.amount,
+			expense.memo
+		FROM
+			account.expense
+		WHERE
+			daily_budget_id = #{dailyBudgetId.value}
+	</select>
+	<select id="findBy" resultMap="ExpenseResultMap">
+		SELECT
+			expense.id,
+			expense.category_type,
+			expense.name,
+			expense.amount,
+			expense.memo
+		FROM
+			account.expense
+		WHERE
+			id = #{expenseId}
+	</select>
+
+	<select id="findTotal" resultType="Integer">
+		SELECT
+			SUM(expense.amount)
+		FROM
+			account.expense
+		WHERE
+			expense.daily_budget_id = #{dailyBudgetId.value}
+	</select>
+
+	<update id="modify">
+		UPDATE
+			account.expense
+		SET
+			category_type = #{expense.expenseCategory},
+			name = #{expense.expenseName.value},
+			amount = #{expense.expenseAmount.value}::integer,
+			memo = #{expense.expenseMemo.value}
+		WHERE
+			id = #{expense.expenseId.value}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM
+			account.expense
+		WHERE
+			id = #{expenseId}
+	</delete>
+
+
+</mapper>

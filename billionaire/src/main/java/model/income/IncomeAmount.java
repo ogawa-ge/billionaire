@@ -2,27 +2,24 @@ package model.income;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import model.primitiv.Identifiable;
+import org.hibernate.validator.constraints.Range;
 
-public class IncomeAmount implements Serializable, Identifiable{
+public class IncomeAmount implements Serializable{
 	@NotNull(message="収入金額を入力してください。")
-	@Min(value=0, message="収入金額を{value}以上の数字で入力してください。")
-	@Max(value=2147483647, message="収入金額を{value}以下の数字で入力してください。")
-	private Integer value;
+	@Range(min=0, max=2147483647, message="正しい収入金額を入力してください。")
+	private String value;
 
-	public IncomeAmount(Integer value){ this.value = value; }
-	public IncomeAmount(){ value = ID_EMPTY; }
+	public IncomeAmount(String value){ this.value = value; }
+	public IncomeAmount(){ value = ""; }
 
 	@Deprecated
-	public void setValue(Integer value){
+	public void setValue(String value){
 		this.value = value;
 	}
 	@Deprecated
-	public Integer getValue(){
+	public String getValue(){
 		return value;
 	}
 

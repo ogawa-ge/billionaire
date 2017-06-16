@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="datasource.savings.performance.SavingsPerformanceMapper">
+
+	<resultMap id="SavingsPerformanceResultMap" type="model.savings.performance.SavingsPerformance">
+		<id property="savingsPerformanceId.value" column="id" />
+		<result property="savingsPerformanceRevenueMonth.value" column="revenue_month" />
+		<result property="savingsPerformanceAmount.value" column="amount" />
+		<result property="savingsGoalAmount.value" column="savings_goal_amount" />
+	</resultMap>
+	<select id="listOf" resultMap="SavingsPerformanceResultMap">
+		SELECT
+			savings_performance.id,
+			TO_CHAR(savings_performance.revenue_month, 'yyyy/MM') AS revenue_month,
+			savings_performance.amount,
+			savings_performance.savings_goal_amount
+		FROM
+			account.savings_performance
+		WHERE
+			savings_performance.user_id = #{userId.value}
+	</select>
+
+	<select id="findTotal" resultType="Integer">
+		SELECT
+			SUM(savings_performance.amount)
+		FROM
+			account.savings_performance
+		WHERE
+			savings_performance.user_id = #{userId.value}
+	</select>
+
+</mapper>

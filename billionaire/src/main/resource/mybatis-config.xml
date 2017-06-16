@@ -17,6 +17,7 @@
     <!-- Mapperファイルのパスを記述 -->
     <mapper resource="datasource/income/income-mapper.xml"/>
     <mapper resource="datasource/savings/goal/savings-goal-mapper.xml"/>
+    <mapper resource="datasource/savings/performance/savings-performance-mapper.xml"/>
     <mapper resource="datasource/fixedcost/fixedcost-mapper.xml"/>
     <mapper resource="datasource/user/user-mapper.xml"/>
     <mapper resource="datasource/balance/balance-mapper.xml"/>
