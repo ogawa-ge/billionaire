@@ -9,7 +9,7 @@ public class DailyBudgetDate implements Serializable{
 		this.value = value;
 	}
 	public DailyBudgetDate(){
-		value = "";
+		value = "---";
 	}
 
 	@Deprecated

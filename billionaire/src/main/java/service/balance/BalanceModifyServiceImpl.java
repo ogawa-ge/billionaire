@@ -14,6 +14,11 @@ public class BalanceModifyServiceImpl implements BalanceModifyService{
 	private BalanceRepository balanceRepository;
 
 	@Override
+	public void modifyAmount(UserId userId, BalanceAmount balanceAmount) {
+		balanceRepository.modifyAmount(userId, balanceAmount);
+	}
+
+	@Override
 	public void modify(UserId userId, BalanceAmount balanceAmount, BalanceMonth balanceMonth) {
 		balanceRepository.modify(userId, balanceAmount, balanceMonth);
 	}
