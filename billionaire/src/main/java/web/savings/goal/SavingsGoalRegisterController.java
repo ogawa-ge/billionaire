@@ -32,7 +32,7 @@ public class SavingsGoalRegisterController {
 	@RequestMapping
 	public String register(Model model, WebRequest webRequest ){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "forward:../login";
+			return "redirect:../login";
 		}
 		/*毎月の貯金目標が設定されているか判定*/
 		if(savingsGoalCheckService.isExists(((User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION)).userId())) return "redirect:../top";

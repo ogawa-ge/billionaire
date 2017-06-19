@@ -21,7 +21,7 @@ public class FixedCostListingContoroller {
 	@RequestMapping
 	public String listing(Model model, WebRequest webRequest ){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "forward:../../login";
+			return "redirect:../../login";
 		}
 
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);

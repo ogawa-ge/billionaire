@@ -29,7 +29,7 @@ public class FixedCostRegisterContoroller {
 	@RequestMapping
 	public String register(Model model, WebRequest webRequest ){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "forward:../../login";
+			return "redirect:../../login";
 		}
 
 		model.addAttribute("fixedCost", fixedCostFactory.create());

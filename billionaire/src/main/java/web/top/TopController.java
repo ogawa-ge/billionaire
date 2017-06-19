@@ -16,6 +16,7 @@ import model.dailybudget.Budget;
 import model.dailybudget.DailyBudgetDate;
 import model.dailybudget.DailyBudgetId;
 import model.user.User;
+import model.user.UserSummaryFactory;
 import service.balance.BalanceCalcService;
 import service.balance.BalanceCheckService;
 import service.balance.BalanceFindService;
@@ -29,7 +30,6 @@ import service.income.IncomeFindService;
 import service.top.CalendarListingService;
 
 @Controller("topController")
-@RequestMapping("top")
 @SessionAttributes("user")
 public class TopController {
 	@Autowired
@@ -54,11 +54,20 @@ public class TopController {
 	private ExpenseListingService expenseListingService;
 	@Autowired
 	private CalendarListingService calendarListingService;
+	@Autowired
+	private UserSummaryFactory userSummaryFactory;
 
-	@RequestMapping
+	@RequestMapping(value="/")
+	public String index(Model model){
+		model.addAttribute("userSummary", userSummaryFactory.create());
+
+		return "top/index";
+	}
+
+	@RequestMapping("top")
 	public String top(Model model, WebRequest webRequest){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "top/index";
+			return "redirect:./";
 		}
 
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);

@@ -73,7 +73,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="check", method=RequestMethod.POST)
-	public String loginCheck(Model model, User user, @Valid @ModelAttribute("userSummary") UserSummary userSummary, Errors errors, WebRequest webRequest){
+	public String loginCheck(Model model, @Valid @ModelAttribute("userSummary") UserSummary userSummary, Errors errors, WebRequest webRequest){
 
 		if(errors.hasErrors()){
 			return "top/login";
@@ -81,7 +81,7 @@ public class LoginController {
 			model.addAttribute("loginError", "メールアドレス、またはパスワードが間違っています。");
 			return "top/login";
 		}
-		user = userFindService.findBy(userSummary.userMail(), userSummary.userPassword());
+		User user = userFindService.findBy(userSummary.userMail(), userSummary.userPassword());
 
 		model.addAttribute("user", user);
 

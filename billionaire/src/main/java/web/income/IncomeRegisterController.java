@@ -34,7 +34,7 @@ public class IncomeRegisterController {
 	@RequestMapping
 	public String register( Model model, WebRequest webRequest ){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "forward:../login";
+			return "redirect:../login";
 		}
 		/*毎月の収入が設定されているか判定*/
 		if(incomeCheckService.isExists(((User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION)).userId())) return "redirect:../savings_goal";

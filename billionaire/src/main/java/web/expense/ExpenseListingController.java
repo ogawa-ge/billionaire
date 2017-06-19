@@ -28,7 +28,7 @@ public class ExpenseListingController {
 	@RequestMapping
 	public String listing(Model model, WebRequest webRequest ){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
-			return "forward:../login";
+			return "redirect:../login";
 		}
 
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
@@ -44,8 +44,13 @@ public class ExpenseListingController {
         model.addAttribute("expenseList", expenseListingService.listOf(dailyBudgetFindService.findBy(user.userId(),
         																							new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId()));
 
-        model.addAttribute("expenseTotal", expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
-        																								new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId()));
+        Integer totalAmount = expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
+						new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId());
+
+        if(totalAmount != null)
+        	model.addAttribute("expenseTotal", totalAmount);
+        else
+        	model.addAttribute("expenseTotal", "---");
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
 
@@ -74,8 +79,13 @@ public class ExpenseListingController {
         model.addAttribute("expenseList", expenseListingService.listOf(dailyBudgetFindService.findBy(user.userId(),
         																							new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId()));
 
-        model.addAttribute("expenseTotal", expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
-        																								new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId()));
+        Integer totalAmount = expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
+						new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId());
+
+        if(totalAmount != null)
+        	model.addAttribute("expenseTotal", totalAmount);
+        else
+        	model.addAttribute("expenseTotal", "---");
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
 
