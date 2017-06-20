@@ -4,13 +4,13 @@
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Billionaire - TOP</title>
 	    ##<!-- BootstrapのCSS読み込み -->
 	    <link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	    <title>Billionaire - TOP</title>
 	</head>
 	<body>
 		<div class="jumbotron">
@@ -22,27 +22,39 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">
-					<div class="col-sm-6">
-						<div class="panel panel-default">
+				<div class="col-sm-6">
+					#parse("expense/daily_budget_panel.vm")
+				</div>
+				<div class="col-sm-6">
+					#set ($temp = $intConv.parseInt($balance.balanceAmount.value))
+					#if($temp > 0)
+						<div class="panel panel-success">
 							<div class="panel-heading">
-								今日の使用可能金額
+								今月の使用可能金額
 							</div>
 							<div class="panel-body">
-								<h3 align="right">$!esc.html($dailyBudget.budget.value) 円</h3>
+									<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm-6">
+					#elseif($temp < 0)
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								今月の使用可能金額
+							</div>
+							<div class="panel-body">
+									<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
+							</div>
+						</div>
+					#else
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								今月の使用可能金額
 							</div>
 							<div class="panel-body">
-								<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
+									<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
 							</div>
 						</div>
-					</div>
+					#end
 				</div>
 			</div>
 			<div class="row">
@@ -56,11 +68,9 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
+							<h3 align="center">本日は　<u>$date</u>　です。</h3>
 							<table class="table table-striped table-bordered">
 								<thead>
-									<tr>
-										<th colspan="7">$date</th>
-									</tr>
 									<tr>
 										<th>日</th>
 										<th>月</th>
@@ -74,16 +84,33 @@
 								<tbody>
 									<tr align="center">
 									#foreach($calendar in $!calendarList.calendarDailyDetailList)
-										<td>
-											<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-											#if($!esc.html($!{calendar.budget.value}) == "---")
-												$!esc.html($!{calendar.budget.value})
-											#else
-												<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">$!esc.html($!{calendar.budget.value})</a>
-											#end
-										</td>
+										#set ($budget = $!esc.html($!{calendar.budget.value}))
+										#set ($temp = 0 )
+										#if($budget != "---")
+											#set ($temp = $intConv.parseInt($!esc.html($!{calendar.budget.value})))
+										#end
+										#if($temp > 0)
+											<td class="success">
+												<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+												<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">$budget</a>
+											</td>
+										#elseif($temp < 0)
+											<td class="danger">
+												<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+												<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">$budget</a>
+											</td>
+										#else
+											<td>
+												<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+												#if($budget == "---")
+													$budget
+												#else
+													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">$budget</a>
+												#end
+											</td>
+										#end
 										#if($velocityCount % 7 == 0)
-											</tr><tr>
+											</tr><tr align="center">
 										#end
 									#end
 									</tr>

@@ -28,14 +28,7 @@
 					</div>
 				</div>
 				<div class="col-sm-offset-1 col-sm-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							$esc.html($date) の使用可能金額
-						</div>
-						<div class="panel-body">
-							<h3 align="right">$!esc.html($dailyBudget.budget.value) 円</h3>
-						</div>
-					</div>
+					#parse("expense/daily_budget_panel.vm")
 				</div>
 			</div>
 			<div class="row">
@@ -58,18 +51,31 @@
 									<td>$esc.html($expense.expenseName.value)</td>
 									<td>$esc.html($expense.expenseMemo.value)</td>
 									<td>$esc.html($expense.expenseAmount.value) 円</td>
-									<td>
-										<form name="modify_${expense.expenseId.value}" method="post" action="${link.contextURL}/expense/modify">
-											<input type="hidden" name="expenseId" value="${expense.expenseId.value}">
-											<a class="btn btn-primary center-block" href="javascript:void(0)" onclick="document.modify_${expense.expenseId.value}.submit();return false;">変更</a>
-										</form>
-									</td>
-									<td>
-										<form name="delete_${expense.expenseId.value}" method="post" action="${link.contextURL}/expense/delete">
-											<input type="hidden" name="expenseId" value="${expense.expenseId.value}">
-											<a class="btn btn-danger center-block" href="javascript:void(0)" onclick="document.delete_${expense.expenseId.value}.submit();return false;">削除</a>
-										</form>
-									</td>
+									#if(!$!lock)
+										<td>
+											<form name="modify_${expense.expenseId.value}" method="post" action="${link.contextURL}/expense/modify">
+												<input type="hidden" name="expenseId" value="${expense.expenseId.value}">
+												<a class="btn btn-primary center-block" href="javascript:void(0)" onclick="document.modify_${expense.expenseId.value}.submit();return false;">変更</a>
+											</form>
+										</td>
+										<td>
+											<form name="delete_${expense.expenseId.value}" method="post" action="${link.contextURL}/expense/delete">
+												<input type="hidden" name="expenseId" value="${expense.expenseId.value}">
+												<a class="btn btn-danger center-block" href="javascript:void(0)" onclick="document.delete_${expense.expenseId.value}.submit();return false;">削除</a>
+											</form>
+										</td>
+									#else
+										<td>
+											<del>
+												<a class="btn btn-default center-block">変更</a>
+											</del>
+										</td>
+										<td>
+											<del>
+												<a class="btn btn-default center-block">削除</a>
+											</del>
+										</td>
+									#end
 								</tr>
 								#end
 							</tbody>

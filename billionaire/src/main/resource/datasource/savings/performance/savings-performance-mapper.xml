@@ -29,4 +29,18 @@
 			savings_performance.user_id = #{userId.value}
 	</select>
 
+	<insert id="register">
+	INSERT INTO account.savings_performance(
+		user_id,
+		revenue_month,
+		amount,
+		savings_goal_amount
+	)VALUES(
+		#{userId.value},
+		#{savingsPerformance.savingsPerformanceRevenueMonth.value}::date,
+		#{savingsPerformance.savingsPerformanceAmount.value}::integer,
+		#{savingsPerformance.savingsGoalAmount.value}::integer
+	)
+	</insert>
+
 </mapper>

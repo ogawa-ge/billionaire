@@ -10,4 +10,5 @@ import model.user.UserId;
 public interface SavingsPerformanceMapper {
 	public List<SavingsPerformance> listOf(@Param("userId") UserId userId);
 	public Integer findTotal(@Param("userId") UserId userId);
+	public void register(@Param("userId") UserId userId, @Param("savingsPerformance") SavingsPerformance savingsPerformance);
 }

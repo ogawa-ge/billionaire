@@ -18,6 +18,9 @@ public class SavingsGoal implements Serializable{
 		savingsGoalId = new SavingsGoalId();
 	}
 
+	public SavingsGoalAmount savingsGoalAmount(){
+		return savingsGoalAmount;
+	}
 	@Deprecated
 	public SavingsGoalAmount getSavingsGoalAmount(){
 		return savingsGoalAmount;

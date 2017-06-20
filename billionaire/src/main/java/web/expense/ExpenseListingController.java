@@ -15,6 +15,7 @@ import model.dailybudget.DailyBudgetDate;
 import model.user.User;
 import service.dailybudget.DailyBudgetFindService;
 import service.expense.ExpenseListingService;
+import service.income.IncomeFindService;
 
 @Controller("expenseListingController")
 @RequestMapping("expense/list")
@@ -24,6 +25,8 @@ public class ExpenseListingController {
 	private ExpenseListingService expenseListingService;
 	@Autowired
 	private DailyBudgetFindService dailyBudgetFindService;
+	@Autowired
+	private IncomeFindService incomeFindService;
 
 	@RequestMapping
 	public String listing(Model model, WebRequest webRequest ){
@@ -53,6 +56,7 @@ public class ExpenseListingController {
         	model.addAttribute("expenseTotal", "---");
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
+        webRequest.setAttribute("expenseDate", calendar, WebRequest.SCOPE_SESSION);
 
         return "expense/expense_list";
 	}
@@ -68,7 +72,15 @@ public class ExpenseListingController {
 		Integer year = Integer.parseInt(date.substring(0, 4));
 		Integer month = Integer.parseInt(date.substring(4, 6));
 		Integer day = Integer.parseInt(date.substring(6, 8));
-		calendar.set(year, month - 1, day);
+        Integer incomeRevenueDate = Integer.parseInt(incomeFindService.findBy(user.userId()).incomeRevenueDate().value());
+
+        if(incomeRevenueDate <= calendar.get(Calendar.DATE)){
+        	if(day < incomeRevenueDate || calendar.get(Calendar.DATE) < day){
+        		model.addAttribute("lock", true);
+        	}
+        }
+
+        calendar.set(year, month - 1, day);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
 
@@ -88,6 +100,9 @@ public class ExpenseListingController {
         	model.addAttribute("expenseTotal", "---");
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
+        webRequest.setAttribute("expenseDate", calendar, WebRequest.SCOPE_SESSION);
+
+
 
         return "expense/expense_list";
 	}

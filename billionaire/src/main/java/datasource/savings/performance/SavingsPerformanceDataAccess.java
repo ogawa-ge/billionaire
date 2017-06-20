@@ -3,6 +3,7 @@ package datasource.savings.performance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.savings.performance.SavingsPerformance;
 import model.savings.performance.SavingsPerformanceList;
 import model.savings.performance.SavingsPerformanceRepository;
 import model.user.UserId;
@@ -20,6 +21,11 @@ public class SavingsPerformanceDataAccess implements SavingsPerformanceRepositor
 	@Override
 	public Integer findTotal(UserId userId) {
 		return savingsPerformanceMapper.findTotal(userId);
+	}
+
+	@Override
+	public void register(UserId userId, SavingsPerformance savingsPerformance) {
+		savingsPerformanceMapper.register(userId, savingsPerformance);
 	}
 
 }

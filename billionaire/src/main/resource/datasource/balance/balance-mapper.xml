@@ -7,14 +7,14 @@
 	</resultMap>
 	<select id="differenceCalc" resultMap="BalanceAmountMap">
 		SELECT
-			(income.amount - savings_goal.amount - sum(fixed_cost.amount)) AS amount
+			(income.amount - savings_goal.amount - COALESCE(SUM(fixed_cost.amount), 0)) AS amount
 		FROM
 			account.income
 		INNER JOIN
 			account.savings_goal
 		ON
 			income.user_id = savings_goal.user_id
-		INNER JOIN
+		LEFT OUTER JOIN
 			account.fixed_cost
 		ON
 			income.user_id = fixed_cost.user_id
@@ -48,8 +48,8 @@
 			amount
 		)VALUES(
 			#{userId.value},
-			#{balanceMonth.value},
-			#{balanceAmount.value}
+			#{balanceMonth.value}::integer,
+			#{balanceAmount.value}::integer
 		)
 
 	</insert>

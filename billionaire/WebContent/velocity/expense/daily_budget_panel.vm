@@ -1,0 +1,30 @@
+#set ($intConv = 1 )
+#set ($temp = $intConv.parseInt($dailyBudget.budget.value))
+#if($temp > 0)
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			$esc.html($date) の使用可能金額
+		</div>
+		<div class="panel-body">
+				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+		</div>
+	</div>
+#elseif($temp < 0)
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			$esc.html($date) の使用可能金額
+		</div>
+		<div class="panel-body">
+				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+		</div>
+	</div>
+#else
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			$esc.html($date) の使用可能金額
+		</div>
+		<div class="panel-body">
+				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+		</div>
+	</div>
+#end

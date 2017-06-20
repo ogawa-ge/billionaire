@@ -1,45 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <!-- BootstrapのCSS読み込み -->
-		<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	    <!-- jQuery読み込み -->
+	    ##<!-- BootstrapのCSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	    <!-- BootstrapのJS読み込み -->
-	    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	    ##<!-- BootstrapのJS読み込み -->
+	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<title>Billionaire - 貯金実績</title>
 	</head>
 	<body>
-		<h2>貯金実績一覧</h2>
-		<table border="">
-			<tr>
-				<th>貯金合計金額</th>
-			</tr>
-			<tr>
-				<td colspan="2" >
-					合計金額 $!savingsPerformanceTotal 円
-				</td>
-			</tr>
-		</table>
-		<table border>
-			<tr>
-				<th>貯金年月</th>
-				<th>貯金金額</th>
-				<th>貯金目標金額</th>
-			</tr>
-			#foreach($savingsPerformance in $!savingsPerformanceList.savingsPerformanceList)
-			<tr>
-				<td>$savingsPerformance.savingsPerformanceRevenueMonth.value</td>
-				<td>$savingsPerformance.savingsPerformanceAmount.value 円</td>
-				<td>$savingsPerformance.savingsGoalAmount.value 円</td>
-			</tr>
-			#end
-		</table>
-		<form action="${link.contextURL}/top" method="post">
-			<input type="submit" value="TOP画面へ">
-		</form>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Billionaire</h1>
+				<p>貯金実績一覧</p>
+				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							貯金合計金額
+						</div>
+						<div class="panel-body">
+							<h3 align="right">$!esc.html($!savingsPerformanceTotal) 円</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="panel panel-default">
+						<table class="table table-striped">
+							<thead>
+								<tr align="center">
+									<th>貯金年月</th>
+									<th>貯金金額</th>
+									<th>貯金目標金額</th>
+								</tr>
+							</thead>
+							<tbody>
+								#foreach($savingsPerformance in $!savingsPerformanceList.savingsPerformanceList)
+								<tr align="center">
+									<td>$savingsPerformance.savingsPerformanceRevenueMonth.value</td>
+									<td>$savingsPerformance.savingsPerformanceAmount.value 円</td>
+									<td>$savingsPerformance.savingsGoalAmount.value 円</td>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6">
+					<div class="btn-group btn-group-justified" role="group">
+						<a class="btn btn-primary" href="${link.contextURL}/top" role="button">TOP画面へ</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

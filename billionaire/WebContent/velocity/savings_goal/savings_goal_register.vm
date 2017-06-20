@@ -1,34 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <!-- BootstrapのCSS読み込み -->
-		<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	    <!-- jQuery読み込み -->
+	    ##<!-- BootstrapのCSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	    <!-- BootstrapのJS読み込み -->
-	    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	    ##<!-- BootstrapのJS読み込み -->
+	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Billionaire - 初期設定3/3</title>
 	</head>
 	<body>
-		<h2>システムを始める前の初期設定（3/3）毎月の貯金目標の設定</h2>
-		<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
-			<table>
-				<tr>
-					<th>毎月の貯金目標</th>
-					<td>#springFormInput("savingsGoal.savingsGoalAmount.value") 円</td>
-				</tr>
-				<tr>
-					<td colspan="2">#springShowErrors("<br>" "color : red")</td>
-				</tr>
-			</table>
-		</form>
-		<!-- <form id="back_income" action="${link.contextURL}/register/income" method="post">
-		</form>
-		<button type="submit" form="back_income">戻る</button> -->
-		<button type="submit" form="savings_goal_register">登録完了</button>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Billionaire</h1>
+				<p>システムを始める前の初期設定（3/3）毎月の貯金目標の設定</p>
+				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
+								<div class="col-sm-8 col-sm-offset-2">
+									<div class="form-group">
+										<label for="inputSavingsGoalAmountCostName">毎月の貯金目標</label>
+										#springFormInput("savingsGoal.savingsGoalAmount.value" 'class="form-control" placeholder="毎月の貯金目標を入力してください。"')
+										#springShowErrors("<br>" "color : red")
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6">
+					<div class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<button type="submit" class="btn btn-success" form="savings_goal_register">登録完了</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

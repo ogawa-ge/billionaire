@@ -1,19 +1,22 @@
-<table>
-	<tr>
-		<th>出費名</th>
-		<td>#springFormInput("expense.expenseName.value")</td>
-		<th>*出費カテゴリ</th>
-		<td>#springFormSingleSelect("expense.expenseCategory" $expense.expenseCategory.options() "" "")</td>
-	</tr>
-	<tr>
-		<th>*出費額</th>
-		<td>#springFormInput("expense.expenseAmount.value") 円</td>
-	</tr>
-	<tr>
-		<td colspan="2">#springShowErrors("<br>" "color : red")</td>
-	</tr>
-	<tr>
-		<th>備考</th>
-		<td>#springFormInput("expense.expenseMemo.value")</td>
-	</tr>
-</table>
+<p>*印のついている項目は必ず入力してください。</p>
+<div class="col-sm-8 col-sm-offset-2">
+	<div class="form-group">
+		<label for="inputExpenseName">出費名</label>
+		#springFormInput("expense.expenseName.value" 'class="form-control" placeholder="出費名を入力してください。"')
+		#springShowErrors("<br>" "color : red")
+	</div>
+	<div class="form-group">
+		<label for="inputExpenseCategory">*カテゴリ</label>
+		#springFormSingleSelect("expense.expenseCategory" $expense.expenseCategory.options() 'class="form-control"')
+	</div>
+	<div class="form-group">
+		<label for="inputExpenseAmount">*出費額</label>
+		#springFormInput("expense.expenseAmount.value" 'class="form-control" placeholder="出費額を入力してください。"')
+		#springShowErrors("<br>" "color : red")
+	</div>
+	<div class="form-group">
+		<label for="inputExpenseMemo">備考</label>
+		#springFormInput("expense.expenseMemo.value" 'class="form-control" placeholder="備考を入力してください。"')
+		#springShowErrors("<br>" "color : red")
+	</div>
+</div>

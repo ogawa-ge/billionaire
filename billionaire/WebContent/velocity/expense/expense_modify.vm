@@ -1,46 +1,76 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <!-- BootstrapのCSS読み込み -->
-		<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	    <!-- jQuery読み込み -->
+	    ##<!-- BootstrapのCSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	    <!-- BootstrapのJS読み込み -->
-	    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-s		<title>Billionaire - 本日の出費編集</title>
+	    ##<!-- BootstrapのJS読み込み -->
+	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<title>Billionaire - $!esc.html($date)日 の出費編集</title>
 	</head>
 	<body>
-		<h2>本日の出費編集</h2>
-		<table border="">
-			<tr>
-				<th>出費名</th>
-				<td>$expense.expenseName.value</td>
-				<th>出費カテゴリ</th>
-				<td>$expense.expenseCategory.label</td>
-			</tr>
-			<tr>
-				<th>出費額</th>
-				<td>$expense.expenseAmount.value 円</td>
-			</tr>
-			<tr>
-				<th>備考</th>
-				<td colspan="3">$expense.expenseMemo.value</td>
-			</tr>
-		</table>
-		<br>
-
-		<h3>変更したい値を入力してください。</h3>
-		<form  id="expense_modify" action="${link.contextURL}/expense/modify/execute" method="post">
-			#springFormHiddenInput("expense.expenseId.value")
-			#parse("expense/expense_register_table.vm")
-		</form>
-		<form id="escape" action="${link.contextURL}/expense/list" method="post">
-			#springFormHiddenInput("user")
-		</form>
-		<button type="submit" form="escape">もどる</button>
-		<button type="submit" form="expense_modify">編集完了</button>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Billionaire</h1>
+				<p>$!esc.html($date)日 の出費編集</p>
+				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3>変更前の出費</h3>
+						</div>
+						<table class="table table-striped table-responsive">
+							<tbody>
+								<tr>
+									<th>出費名</th>
+									<td>$expense.expenseName.value</td>
+								</tr>
+								<tr>
+									<th>出費カテゴリ</th>
+									<td>$expense.expenseCategory.label</td>
+								</tr>
+								<tr>
+									<th>出費額</th>
+									<td>$expense.expenseAmount.value 円</td>
+								</tr>
+								<tr>
+									<th>備考</th>
+									<td>$expense.expenseMemo.value</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3>変更したい値を入力してください。</h3>
+						</div>
+						<div class="panel-body">
+							<form  id="expense_modify" action="${link.contextURL}/expense/modify/execute" method="post">
+								#springFormHiddenInput("expense.expenseId.value")
+								#parse("expense/expense_register_table.vm")
+							</form>
+							<form id="escape" action="${link.contextURL}/expense/list/$!escape" method="post">
+								#springFormHiddenInput("user")
+							</form>
+							<button type="submit" class="btn btn-primary col-sm-5" form="escape">もどる</button>
+							<button type="submit" class="btn btn-success col-sm-5  pull-right" form="expense_modify">編集完了</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

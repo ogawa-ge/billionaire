@@ -38,8 +38,8 @@
 					        <form id="new_register" action="" method="post"></form>
 
 							<p>
-								<button type="submit" class="btn btn-primary" form="new_register">新規会員登録</button>
-								<button type="submit" class="btn btn-primary" form="login">ログイン</button>
+								<button type="submit" class="btn btn-primary col-sm-5" form="new_register">新規会員登録</button>
+								<button type="submit" class="btn btn-primary pull-right col-sm-5" form="login">ログイン</button>
 							</p>
 
 						</div>
