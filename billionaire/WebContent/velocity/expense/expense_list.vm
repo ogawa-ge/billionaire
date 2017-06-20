@@ -23,9 +23,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-5">
-					<div class="btn-group btn-group-justified" role="group">
-						<a class="btn btn-success" href="${link.contextURL}/expense/register" role="button">新しく出費を登録する</a>
-					</div>
+					#if(!$!lock)
+						<div class="btn-group btn-group-justified" role="group">
+							<a class="btn btn-success" href="${link.contextURL}/expense/register" role="button">新しく出費を登録する</a>
+						</div>
+					#else
+						<div class="btn-group btn-group-justified" role="group">
+							<a class="btn btn-default" role="button">登録済みのため不可</a>
+						</div>
+					#end
 				</div>
 				<div class="col-sm-offset-1 col-sm-6">
 					#parse("expense/daily_budget_panel.vm")
@@ -65,15 +71,8 @@
 											</form>
 										</td>
 									#else
-										<td>
-											<del>
-												<a class="btn btn-default center-block">変更</a>
-											</del>
-										</td>
-										<td>
-											<del>
-												<a class="btn btn-default center-block">削除</a>
-											</del>
+										<td colspan="2">
+												<a class="btn btn-default center-block">登録済みのため変更不可</a>
 										</td>
 									#end
 								</tr>
