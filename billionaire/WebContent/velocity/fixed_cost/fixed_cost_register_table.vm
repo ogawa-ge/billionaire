@@ -6,7 +6,10 @@
 	</div>
 	<div class="form-group">
 		<label for="inputFixedCostAmount">固定費額</label>
-		#springFormInput("fixedCost.fixedCostAmount.value" 'class="form-control" placeholder="固定費額を入力してください。"')
+		<div class="input-group col-sm-6">
+			#springFormInput("fixedCost.fixedCostAmount.value" 'class="form-control" placeholder="固定費額を入力してください。"')
+			<span class="input-group-addon">円</span>
+		</div>
 		#springShowErrors("<br>" "color : red")
 	</div>
 </div>

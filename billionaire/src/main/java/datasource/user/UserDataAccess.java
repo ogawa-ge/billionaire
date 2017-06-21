@@ -18,4 +18,10 @@ public class UserDataAccess implements UserRepository{
 		return userMapper.findBy(userMail, userPassword);
 	}
 
+	@Override
+	public void register(User user) {
+		userMapper.register(user);
+	}
+
+
 }

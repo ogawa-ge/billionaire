@@ -4,7 +4,9 @@
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    ##<!-- BootstrapのCSS読み込み -->
+	    ##<!-- CSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
+		##<!-- BootstrapのCSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -15,14 +17,14 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Billionaire</h1>
+				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>システムを始める前の初期設定（2/3）毎月の固定費の設定―リスト</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-5">
+				<div class="col-sm-5 margin">
 					<div class="btn-group btn-group-justified" role="group">
 						<a class="btn btn-success" href="${link.contextURL}/register/fixed_cost" role="button">新しく固定費を登録する</a>
 					</div>
@@ -76,7 +78,7 @@
 					</table>
 				</div>
 				<div class="row">
-					<div class="col-sm-offset-3 col-sm-6">
+					<div class="col-sm-offset-3 col-sm-6 margin">
 						<div class="btn-group btn-group-justified" role="group">
 							<a class="btn btn-primary" href="${link.contextURL}/register/savings_goal" role="button">次へ</a>
 						</div>

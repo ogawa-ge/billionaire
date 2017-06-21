@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		##<!-- CSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
+		##<!-- BootstrapのCSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		##<!-- jQuery読み込み -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		##<!-- BootstrapのJS読み込み -->
+		<script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<title>Billionaire - User Register</title>
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
+				<p>新規会員登録</p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form class="form" id="user_register_confirm" action="${link.contextURL}/user_register/confirm" method="post">
+								<div class="form-group">
+									<label for="inputName" class="control-label">お名前</label>
+									#springFormInput("user.userName.value" 'class="form-control" placeholder="お名前を入力してください。"')
+									#springShowErrors("<br>" "color : red")
+								</div>
+								<div class="form-group">
+									<label for="inputEmail" class="control-label">メールアドレス</label>
+									#springFormInput("user.userMail.value" 'class="form-control" placeholder="メールアドレスを入力してください。"')
+									<span id="helpBlock" class="help-block">※メールアドレスは、ログインの際必要になります。</span>
+									#springShowErrors("<br>" "color : red")
+									<span style="color : red">$!registerError</span>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword" class="control-label">パスワード</label>
+									#springFormPasswordInput("user.userPassword.value" 'class="form-control" placeholder="パスワードを入力してください。"')
+									#springShowErrors("<br>" "color : red")
+								</div>
+								<br>
+								<h3>利用規約</h3>
+								<pre class="pre-scrollable">
+利
+用
+規
+約
+的
+な
+何
+か
+。
+わ
+っ
+し
+ょ
+い
+、
+わ
+っ
+し
+ょ
+い
+								</pre>
+								#*<div class="checkbox">
+									<label class="col-sm-12" align="center">
+										<input type="checkbox">利用規約に同意する
+									</label>
+								</div>*#
+							</form>
+							<a role="button" class="btn btn-primary col-sm-5 margin" href="${link.contextURL}/">TOPへ戻る</a>
+							<button type="submit" class="btn btn-success col-sm-5 margin pull-right" form="user_register_confirm">登録確認</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+	</body>
+</html>

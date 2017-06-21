@@ -8,4 +8,5 @@ import model.user.UserPassword;
 
 public interface UserMapper {
 	public User findBy(@Param("userMail") UserMail userMail, @Param("userPassword") UserPassword userPassword);
+	public void register(@Param("user") User user);
 }

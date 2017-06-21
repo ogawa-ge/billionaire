@@ -4,7 +4,9 @@
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    ##<!-- BootstrapのCSS読み込み -->
+		##<!-- CSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
+    	##<!-- BootstrapのCSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -15,7 +17,7 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Billionaire</h1>
+				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>貯金実績一覧</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
 			</div>
@@ -58,10 +60,8 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-offset-3 col-sm-6">
-					<div class="btn-group btn-group-justified" role="group">
-						<a class="btn btn-primary" href="${link.contextURL}/top" role="button">TOP画面へ</a>
-					</div>
+				<div class="col-sm-offset-3 col-sm-6 margin">
+					<a class="btn btn-primary btn-block" href="${link.contextURL}/top" role="button">TOP画面へ</a>
 				</div>
 			</div>
 		</div>

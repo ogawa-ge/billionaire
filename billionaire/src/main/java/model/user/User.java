@@ -29,6 +29,12 @@ public class User implements Serializable{
 	public UserId userId(){
 		return userId;
 	}
+	public UserMail userMail(){
+		return userMail;
+	}
+	public UserPassword userPassword(){
+		return userPassword;
+	}
 
 	@Deprecated
 	public UserId getUserId(){

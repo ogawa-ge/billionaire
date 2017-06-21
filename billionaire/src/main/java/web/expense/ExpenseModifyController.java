@@ -58,7 +58,6 @@ public class ExpenseModifyController {
 	public String registerExecute(Model model, @RequestParam("expenseId.value") Integer expenseId, @Valid @ModelAttribute("expense") Expense expense, Errors errors, WebRequest webRequest){
 
 		if(errors.hasErrors()){
-			model.addAttribute("expense", expenseFindService.findBy(expense.expenseId().value()));
 			return "expense/expense_modify";
 		}
 

@@ -18,6 +18,6 @@ public class UserCheckServiceImpl implements UserCheckService{
 	}
 	@Override
 	public boolean isExists(UserMail userMail, UserPassword userPassword) {
-		return !isExists(userMail, userPassword);
+		return !isNotExists(userMail, userPassword);
 	}
 }

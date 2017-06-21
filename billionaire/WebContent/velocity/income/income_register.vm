@@ -4,7 +4,9 @@
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    ##<!-- BootstrapのCSS読み込み -->
+	    ##<!-- CSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
+		##<!-- BootstrapのCSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	    ##<!-- jQuery読み込み -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -15,7 +17,7 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Billionaire</h1>
+				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>システムを始める前の初期設定（1/3）1か月の収入の設定</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
 			</div>
@@ -29,12 +31,19 @@
 								<div class="col-sm-8 col-sm-offset-2">
 									<div class="form-group">
 										<label for="inputFixedCostName">1か月の収入金額</label>
-										#springFormInput("income.incomeAmount.value" 'class="form-control" placeholder="1か月の収入金額を入力してください。"')
+										<div class="input-group col-sm-8">
+											#springFormInput("income.incomeAmount.value" 'class="form-control" placeholder="1か月の収入金額を入力してください。"')
+											<span class="input-group-addon">円</span>
+										</div>
 										#springShowErrors("<br>" "color : red")
 									</div>
 									<div class="form-group">
 										<label for="inputFixedCostAmount">毎月の収入日</label>
-										#springFormInput("income.incomeRevenueDate.value" 'class="form-control" placeholder="毎月の収入日を入力してください。"')
+										<div class="input-group col-sm-5">
+											<span class="input-group-addon">毎月</span>
+											#springFormInput("income.incomeRevenueDate.value" 'class="form-control" placeholder="収入日を入力してください。"')
+											<span class="input-group-addon">日</span>
+										</div>
 										#springShowErrors("<br>" "color : red")
 									</div>
 								</div>
@@ -44,7 +53,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-offset-3 col-sm-6">
+				<div class="col-sm-offset-3 col-sm-6 margin">
 					<div class="btn-group btn-group-justified" role="group">
 						<div class="btn-group" role="group">
 							<button type="submit" class="btn btn-success" form="income_register">次へ</button>

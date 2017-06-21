@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		##<!-- CSS読み込み -->
+		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
 		##<!-- BootstrapのCSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 		##<!-- jQuery読み込み -->
@@ -15,7 +17,7 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Billionaire</h1>
+				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>億万長者に"なれる"かも？</p>
 			</div>
 		</div>
@@ -25,7 +27,7 @@
 				<div class="col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							$!loginError
+							<span style="color : red">$!loginError</span>
 							<form class="form-horizontal" id="login" action="${link.contextURL}/login/check" method="post">
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-3 control-label">メールアドレス</label>

@@ -11,12 +11,15 @@
 	</div>
 	<div class="form-group">
 		<label for="inputExpenseAmount">*出費額</label>
-		#springFormInput("expense.expenseAmount.value" 'class="form-control" placeholder="出費額を入力してください。"')
-		#springShowErrors("<br>" "color : red")
+		<div class="input-group col-sm-6">
+			#springFormInput("expense.expenseAmount.value" 'class="form-control" placeholder="出費額を入力してください。"')
+			<span class="input-group-addon">円</span>
+		</div>
 	</div>
+	#springShowErrors("<br>" "color : red")
 	<div class="form-group">
 		<label for="inputExpenseMemo">備考</label>
-		#springFormInput("expense.expenseMemo.value" 'class="form-control" placeholder="備考を入力してください。"')
+		#springFormTextarea("expense.expenseMemo.value" 'rows="3" class="form-control" placeholder="備考を入力してください。"')
 		#springShowErrors("<br>" "color : red")
 	</div>
 </div>

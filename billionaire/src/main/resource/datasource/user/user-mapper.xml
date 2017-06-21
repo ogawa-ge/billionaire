@@ -16,11 +16,28 @@
 			password
 		FROM
 			account.user
-		WHERE
-			mail = #{userMail.value}
-		AND
-			password = #{userPassword.value}
+		<where>
+			<if test="userMail.value != null">
+				mail = #{userMail.value}
+			</if>
+			<if test="userPassword != null and userPassword.value != null">
+				AND password = #{userPassword.value}
+			</if>
+
+		</where>
 	</select>
+
+	<insert id="register">
+	INSERT INTO account.user(
+		name,
+		password,
+		mail
+	)VALUES(
+		#{user.userName.value},
+		#{user.userPassword.value},
+		#{user.userMail.value}
+	)
+	</insert>
 
 
 

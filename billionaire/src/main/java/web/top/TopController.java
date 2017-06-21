@@ -62,7 +62,10 @@ public class TopController {
 	private SavingsGoalFindService savingsGoalFindService;
 
 	@RequestMapping(value="/")
-	public String index(Model model){
+	public String index(Model model, WebRequest webRequest){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) != null){
+			return "redirect:login";
+		}
 		model.addAttribute("userSummary", userSummaryFactory.create());
 
 		return "top/index";
