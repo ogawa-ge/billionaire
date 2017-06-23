@@ -18,6 +18,8 @@
 			account.savings_performance
 		WHERE
 			savings_performance.user_id = #{userId.value}
+		ORDER BY
+			savings_performance.id DESC
 	</select>
 
 	<select id="findTotal" resultType="Integer">

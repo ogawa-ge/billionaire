@@ -39,7 +39,7 @@
 											<span class="input-group-addon">円</span>
 										</div>
 										#springShowErrors("<br>" "color : red")
-										#springFormHiddenInput ("savingsGoal.savingsGoal")
+										#springBind("savingsGoal.savingsGoal")
 										#springShowErrors("<br>" "color : red")
 									</div>
 								</div>

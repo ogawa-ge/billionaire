@@ -1,19 +1,20 @@
 package web.user;
 
-import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
+import model.groups.RegisterGroup;
 import model.user.User;
 import model.user.UserFactory;
-import service.user.UserCheckService;
 import service.user.UserFindService;
 import service.user.UserRegisterService;
 
@@ -22,8 +23,6 @@ import service.user.UserRegisterService;
 public class UserRegisterController {
 	@Autowired
 	private UserFactory userFactory;
-	@Autowired
-	private UserCheckService userCheckService;
 	@Autowired
 	private UserRegisterService userRegisterService;
 	@Autowired
@@ -40,11 +39,8 @@ public class UserRegisterController {
 	}
 
 	@RequestMapping(value="confirm", method=RequestMethod.POST)
-	public String confirm(Model model, @Valid @ModelAttribute("user") User user, Errors errors, WebRequest webRequest){
+	public String confirm(Model model, @Validated({RegisterGroup.class, Default.class}) @ModelAttribute("user") User user, Errors errors, WebRequest webRequest){
 		if(errors.hasErrors()){
-			return "user/user_register";
-		}else if(userCheckService.isExists(user.userMail(), null)){
-			model.addAttribute("registerError", "このメールアドレスは、既に登録済みです。");
 			return "user/user_register";
 		}
 

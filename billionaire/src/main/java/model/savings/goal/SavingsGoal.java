@@ -29,7 +29,7 @@ public class SavingsGoal implements Serializable{
 	}
 
 
-	@OverAvailableAmount(message="貯金目標金額が、「収入＋固定費合計金額」を上回っています。")
+	@OverAvailableAmount
 	public SavingsGoal getSavingsGoal() {
 		return this;
 	}

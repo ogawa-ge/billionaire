@@ -35,7 +35,7 @@
 								今月の使用可能金額
 							</div>
 							<div class="panel-body">
-								<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
+								<h3 align="right">$!number.format($!esc.html($balance.balanceAmount.value)) 円</h3>
 							</div>
 						</div>
 					#elseif($temp < 0)
@@ -44,7 +44,7 @@
 								今月の使用可能金額
 							</div>
 							<div class="panel-body">
-								<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
+								<h3 align="right">$!number.format($!esc.html($balance.balanceAmount.value)) 円</h3>
 							</div>
 						</div>
 					#else
@@ -53,7 +53,7 @@
 								今月の使用可能金額
 							</div>
 							<div class="panel-body">
-								<h3 align="right">$!esc.html($balance.balanceAmount.value) 円</h3>
+								<h3 align="right">$!number.format($!esc.html($balance.balanceAmount.value)) 円</h3>
 							</div>
 						</div>
 					#end
@@ -93,12 +93,16 @@
 											#if($temp > 0)
 												<td class="success">
 													<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-success"><b>$budget</b></a>
+													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-success">
+														<b>$!number.format($budget)</b>
+													</a>
 												</td>
 											#elseif($temp < 0)
 												<td class="danger">
 													<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-danger"><b>$budget</b></a>
+													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-danger">
+														<b>$!number.format($budget)</b>
+													</a>
 												</td>
 											#else
 												<td>
@@ -106,7 +110,9 @@
 													#if($budget == "---")
 														$budget
 													#else
-														<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">$budget</a>
+														<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">
+															$!number.format($budget)
+														</a>
 													#end
 												</td>
 											#end

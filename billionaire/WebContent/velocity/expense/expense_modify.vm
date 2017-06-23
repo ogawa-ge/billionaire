@@ -41,7 +41,7 @@
 								</tr>
 								<tr>
 									<th>出費額</th>
-									<td align="center">$!esc.html($expense.expenseAmount.value) 円</td>
+									<td align="center">$!number.format($!esc.html($expense.expenseAmount.value)) 円</td>
 								</tr>
 								<tr>
 									<th>備考</th>

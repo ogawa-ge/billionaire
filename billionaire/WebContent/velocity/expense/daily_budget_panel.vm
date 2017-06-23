@@ -6,7 +6,7 @@
 			$esc.html($date) の使用可能金額
 		</div>
 		<div class="panel-body">
-				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+				<h3 align="right">$!number.format($!esc.html($!{dailyBudget.budget.value})) 円</h3>
 		</div>
 	</div>
 #elseif($temp < 0)
@@ -15,7 +15,7 @@
 			$esc.html($date) の使用可能金額
 		</div>
 		<div class="panel-body">
-				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+				<h3 align="right">$!number.format($!esc.html($!{dailyBudget.budget.value})) 円</h3>
 		</div>
 	</div>
 #else
@@ -24,7 +24,7 @@
 			$esc.html($date) の使用可能金額
 		</div>
 		<div class="panel-body">
-				<h3 align="right">$!esc.html($!{dailyBudget.budget.value}) 円</h3>
+				<h3 align="right">$!number.format($!esc.html($!{dailyBudget.budget.value})) 円</h3>
 		</div>
 	</div>
 #end

@@ -23,5 +23,10 @@ public class UserDataAccess implements UserRepository{
 		userMapper.register(user);
 	}
 
+	@Override
+	public boolean isUsed(UserMail userMail) {
+		return userMapper.isUsed(userMail);
+	}
+
 
 }

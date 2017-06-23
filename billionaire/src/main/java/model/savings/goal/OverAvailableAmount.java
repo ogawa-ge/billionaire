@@ -22,7 +22,7 @@ import model.income.IncomeRepository;
 public @interface OverAvailableAmount{
 	String value() default "";
 
-	String message() default "{hs.contract.validator.constraints.OverIncomeAmount.message}";
+	String message() default "貯金目標金額が、「収入＋固定費合計金額」を上回っています。";
 
     Class<?>[] groups() default {};
 

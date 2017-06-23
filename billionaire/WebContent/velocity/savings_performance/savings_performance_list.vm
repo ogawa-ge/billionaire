@@ -30,32 +30,36 @@
 							貯金合計金額
 						</div>
 						<div class="panel-body">
-							<h3 align="right">$!esc.html($!savingsPerformanceTotal) 円</h3>
+							<h3 align="right">$!number.format($!esc.html( $!savingsPerformanceTotal)) 円</h3>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">
+					※貯金実績は最大2年間分(24件)表示されます。
 					<div class="panel panel-default">
-						<table class="table table-striped">
-							<thead>
-								<tr align="center">
-									<th>貯金年月</th>
-									<th>貯金金額</th>
-									<th>貯金目標金額</th>
-								</tr>
-							</thead>
-							<tbody>
-								#foreach($savingsPerformance in $!savingsPerformanceList.savingsPerformanceList)
-								<tr align="center">
-									<td>$savingsPerformance.savingsPerformanceRevenueMonth.value</td>
-									<td>$savingsPerformance.savingsPerformanceAmount.value 円</td>
-									<td>$savingsPerformance.savingsGoalAmount.value 円</td>
-								</tr>
-								#end
-							</tbody>
-						</table>
+							<table class="table table-striped table-fixed">
+								<thead>
+									<tr align="center">
+										<th class="col-sm-4 col-lg-4">貯金年月</th>
+										<th class="col-sm-4 col-lg-4">貯金金額</th>
+										<th class="col-sm-4 col-lg-4">貯金目標金額</th>
+									</tr>
+								</thead>
+								<tbody>
+									#foreach($savingsPerformance in $!savingsPerformanceList.savingsPerformanceList)
+										<tr align="center">
+											<td>$!esc.html($savingsPerformance.savingsPerformanceRevenueMonth.value)</td>
+											<td>$!number.format($!esc.html($savingsPerformance.savingsPerformanceAmount.value)) 円</td>
+											<td>$!number.format($!esc.html($savingsPerformance.savingsGoalAmount.value)) 円</td>
+										</tr>
+										#if($velocityCount == 24)
+											#break
+										#end
+									#end
+								</tbody>
+							</table>
 					</div>
 				</div>
 			</div>

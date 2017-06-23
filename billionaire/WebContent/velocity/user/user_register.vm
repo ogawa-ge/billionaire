@@ -36,8 +36,8 @@
 								<div class="form-group">
 									<label for="inputEmail" class="control-label">メールアドレス</label>
 									#springFormInput("user.userMail.value" 'class="form-control" placeholder="メールアドレスを入力してください。"')
-									<span id="helpBlock" class="help-block">※メールアドレスは、ログインの際必要になります。</span>
 									#springShowErrors("<br>" "color : red")
+									<span id="helpBlock" class="help-block">※メールアドレスは、ログインの際必要になります。</span>
 									<span style="color : red">$!registerError</span>
 								</div>
 								<div class="form-group">

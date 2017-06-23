@@ -5,9 +5,12 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import model.groups.RegisterGroup;
+
 public class UserMail implements Serializable{
 	@NotBlank(message="メールアドレスを入力してください。")
 	@Email(message="正しいメールアドレスを入力してください。")
+	@UnUsedMail(groups={RegisterGroup.class})
 	private String value;
 
 	public UserMail(String value){ this.value = value; }
@@ -16,6 +19,11 @@ public class UserMail implements Serializable{
 	public String value(){
 		return value;
 	}
+
+	public boolean isEmpty(){
+		return value.isEmpty();
+	}
+
 
 	@Deprecated
 	public void setValue(String value){

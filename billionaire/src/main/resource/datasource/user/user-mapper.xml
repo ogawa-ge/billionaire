@@ -39,6 +39,14 @@
 	)
 	</insert>
 
+	<select id="isUsed" resultType="boolean">
+		SELECT
+			COUNT(mail)
+		FROM
+			account.user
+		WHERE
+			mail = #{userMail.value}
+	</select>
 
 
 </mapper>
