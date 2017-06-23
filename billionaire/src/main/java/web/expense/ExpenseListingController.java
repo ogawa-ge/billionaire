@@ -69,10 +69,10 @@ public class ExpenseListingController {
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
 
 		Calendar calendar = Calendar.getInstance();
-		Integer year = Integer.parseInt(date.substring(0, 4));
-		Integer month = Integer.parseInt(date.substring(4, 6));
-		Integer day = Integer.parseInt(date.substring(6, 8));
-        Integer incomeRevenueDate = Integer.parseInt(incomeFindService.findBy(user.userId()).incomeRevenueDate().value());
+		Integer year = Integer.valueOf(date.substring(0, 4));
+		Integer month = Integer.valueOf(date.substring(4, 6));
+		Integer day = Integer.valueOf(date.substring(6, 8));
+        Integer incomeRevenueDate = Integer.valueOf(incomeFindService.findBy(user.userId()).incomeRevenueDate().value());
 
         if(incomeRevenueDate <= calendar.get(Calendar.DATE)){
         	if(day < incomeRevenueDate || calendar.get(Calendar.DATE) < day){

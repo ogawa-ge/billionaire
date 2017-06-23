@@ -26,12 +26,12 @@ public class IncomeCheckServiceImpl implements IncomeCheckService{
 
 	@Override
 	public boolean isNotExceeds(UserId userId, Integer month, Integer date) {/*超えていない*/
-		Integer balanceMonth = Integer.parseInt(balanceRepository.findBy(userId).balanceMonth().value());
+		Integer balanceMonth = Integer.valueOf(balanceRepository.findBy(userId).balanceMonth().value());
 
 		if(balanceMonth > month) return true;
 		else if(balanceMonth < month) return false;
 
-		return Integer.parseInt(incomeRepository.findBy(userId).incomeRevenueDate().value()) > date;
+		return Integer.valueOf(incomeRepository.findBy(userId).incomeRevenueDate().value()) > date;
 	}
 
 	@Override

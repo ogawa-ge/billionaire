@@ -26,6 +26,9 @@ public class SavingsGoalAmount implements Serializable, Identifiable{
 	public String value(){
 		return value;
 	}
+	public boolean isEmpty() {
+		return value.isEmpty();
+	}
 	@Deprecated
 	public void setValue(String value){
 		this.value = value;

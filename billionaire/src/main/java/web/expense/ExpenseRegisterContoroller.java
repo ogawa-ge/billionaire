@@ -66,8 +66,8 @@ public class ExpenseRegisterContoroller {
 			return "expense/expense_register";
 		}
 
-        Integer balanceAmount = Integer.parseInt(balanceFindService.findBy(user.userId()).balanceAmount().value());
-    	balanceAmount -= Integer.parseInt(expense.expenseAmount().value());
+        Integer balanceAmount = Integer.valueOf(balanceFindService.findBy(user.userId()).balanceAmount().value());
+    	balanceAmount -= Integer.valueOf(expense.expenseAmount().value());
 
 		Calendar calendar = (Calendar) webRequest.getAttribute("expenseDate", WebRequest.SCOPE_SESSION);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");

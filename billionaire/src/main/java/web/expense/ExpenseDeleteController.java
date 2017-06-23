@@ -42,9 +42,9 @@ public class ExpenseDeleteController {
 		Calendar calendar = (Calendar) webRequest.getAttribute("expenseDate", WebRequest.SCOPE_SESSION);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 
-		Integer expenseAmount = Integer.parseInt(expenseFindService.findBy(expenseId).expenseAmount().value()) * -1;
+		Integer expenseAmount = Integer.valueOf(expenseFindService.findBy(expenseId).expenseAmount().value()) * -1;
 
-        Integer balanceAmount = Integer.parseInt(balanceFindService.findBy(user.userId()).balanceAmount().value());
+        Integer balanceAmount = Integer.valueOf(balanceFindService.findBy(user.userId()).balanceAmount().value());
     	balanceAmount -= expenseAmount;
 
 		dailyBudgetModifyService.modify((DailyBudgetId) webRequest.getAttribute("dailyBudgetId", WebRequest.SCOPE_SESSION),

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	    ##<!-- CSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
 		##<!-- BootstrapのCSS読み込み -->
@@ -30,13 +30,16 @@
 						<div class="panel-body">
 							<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
 								<div class="col-sm-8 col-sm-offset-2">
+									#springFormHiddenInput("savingsGoal.userId.value")
 									<div class="form-group">
 										<label for="inputSavingsGoalAmountCostName">毎月の貯金目標</label>
-										<div class="input-group col-sm-8">
+										<div class="input-group col-sm-8 col-sm-offset-2">
 											<span class="input-group-addon">毎月</span>
 											#springFormInput("savingsGoal.savingsGoalAmount.value" 'class="form-control" placeholder="毎月の貯金目標を入力してください。"')
 											<span class="input-group-addon">円</span>
 										</div>
+										#springShowErrors("<br>" "color : red")
+										#springFormHiddenInput ("savingsGoal.savingsGoal")
 										#springShowErrors("<br>" "color : red")
 									</div>
 								</div>

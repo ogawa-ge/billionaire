@@ -22,4 +22,9 @@ public class IncomeDataAccess implements IncomeRepository{
 		return incomeMapper.findBy(userId);
 	}
 
+	@Override
+	public Integer findAmount(UserId userId) {
+		return incomeMapper.findAmount(userId);
+	}
+
 }

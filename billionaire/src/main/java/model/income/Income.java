@@ -22,6 +22,9 @@ public class Income implements Serializable{
 		incomeRevenueDate = new IncomeRevenueDate();
 	}
 
+	public IncomeAmount incomeAmount(){
+		return incomeAmount;
+	}
 	public IncomeRevenueDate incomeRevenueDate(){
 		return incomeRevenueDate;
 	}

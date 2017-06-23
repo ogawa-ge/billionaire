@@ -65,11 +65,11 @@ public class ExpenseModifyController {
 		Calendar calendar = (Calendar) webRequest.getAttribute("expenseDate", WebRequest.SCOPE_SESSION);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 
-		Integer newExpenseAmount = Integer.parseInt(expense.expenseAmount().value());
-		Integer oldExpenseAmount = Integer.parseInt(expenseFindService.findBy(expenseId).expenseAmount().value());
+		Integer newExpenseAmount = Integer.valueOf(expense.expenseAmount().value());
+		Integer oldExpenseAmount = Integer.valueOf(expenseFindService.findBy(expenseId).expenseAmount().value());
 		Integer expenseAmount = (newExpenseAmount - oldExpenseAmount);
 
-        Integer balanceAmount = Integer.parseInt(balanceFindService.findBy(user.userId()).balanceAmount().value());
+        Integer balanceAmount = Integer.valueOf(balanceFindService.findBy(user.userId()).balanceAmount().value());
     	balanceAmount -= expenseAmount;
 
 		dailyBudgetModifyService.modify((DailyBudgetId) webRequest.getAttribute("dailyBudgetId", WebRequest.SCOPE_SESSION),

@@ -11,7 +11,7 @@ create sequence account.income_id_seq;
 create sequence account.balance_id_seq;
 
 CREATE TABLE account.user (
-	id integer DEFAULT nextval('acount.user_id_seq') NOT NULL,
+	id integer DEFAULT nextval('account.user_id_seq') NOT NULL,
 	name varchar(50) NOT NULL,
 	password varchar(15) NOT NULL,
 	mail varchar(40) NOT NULL,

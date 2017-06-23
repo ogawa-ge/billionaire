@@ -79,12 +79,12 @@ public class TopController {
 
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-		Integer balanceAmount = Integer.parseInt(balanceFindService.findBy(user.userId()).balanceAmount().value());
+		Integer balanceAmount = Integer.valueOf(balanceFindService.findBy(user.userId()).balanceAmount().value());
 
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar nextRevenueDateCalendar = Calendar.getInstance();
-		nextRevenueDateCalendar.set(Calendar.DATE, Integer.parseInt(incomeFindService.findBy(user.userId()).incomeRevenueDate().value()));
+		nextRevenueDateCalendar.set(Calendar.DATE, Integer.valueOf(incomeFindService.findBy(user.userId()).incomeRevenueDate().value()));
 
 		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
 			nextRevenueDateCalendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
@@ -102,7 +102,7 @@ public class TopController {
 
 
 		if(incomeCheckService.isExceeds(user.userId(), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DATE))){
-			Integer savingsGoalAmount = Integer.parseInt(savingsGoalFindService.findBy(user.userId()).savingsGoalAmount().value());
+			Integer savingsGoalAmount = Integer.valueOf(savingsGoalFindService.findBy(user.userId()).savingsGoalAmount().value());
 			Integer savingsPerformanceAmount = balanceAmount + savingsGoalAmount;
 
 			savingsPerformanceRegisterService.register(user.userId(),

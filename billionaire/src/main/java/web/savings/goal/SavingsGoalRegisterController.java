@@ -46,10 +46,12 @@ public class SavingsGoalRegisterController {
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
 			return "redirect:../login";
 		}
-		/*毎月の貯金目標が設定されているか判定*/
-		if(savingsGoalCheckService.isExists(((User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION)).userId())) return "redirect:../top";
 
-		model.addAttribute("savingsGoal", savingsGoalFactory.create());
+		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
+		/*毎月の貯金目標が設定されているか判定*/
+		if(savingsGoalCheckService.isExists(user.userId())) return "redirect:../top";
+
+		model.addAttribute("savingsGoal", savingsGoalFactory.create(user.userId()));
 		return "savings_goal/savings_goal_register";
 	}
 

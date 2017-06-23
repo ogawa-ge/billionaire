@@ -1,10 +1,25 @@
 .calendar{
 	table-layout: fixed;
 }
+.calendar .success, .calendar .danger{
+	padding-left: 0px;
+	padding-right: 0px;
+}
 .margin{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 table th{
 	text-align: center;
+}
+.scroll-box::-webkit-scrollbar {
+  height: 5px;
+}
+.scroll-box::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #eee;
+}
+.scroll-box::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #666;
 }

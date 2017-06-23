@@ -31,5 +31,14 @@
 			income.user_id = #{userId.value}
 	</select>
 
+	<select id="findAmount" resultType="Integer">
+		SELECT
+			income.amount
+		FROM
+			account.income
+		WHERE
+			income.user_id = #{userId.value}
+	</select>
+
 
 </mapper>

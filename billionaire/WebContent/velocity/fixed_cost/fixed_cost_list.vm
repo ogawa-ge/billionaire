@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	    ##<!-- CSS読み込み -->
 		<link type="text/css" href="${link.contextURL}/css/billionaire.css" rel="stylesheet">
 		##<!-- BootstrapのCSS読み込み -->
@@ -46,36 +46,41 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>固定費名</th>
-								<th>固定費額</th>
-							</tr>
-						</thead>
-						<tbody>
-							#foreach($fixedCost in $!fixedCostList.fixedCostList)
-							<tr>
-								<td>$fixedCost.fixedCostName.value</td>
-								<td>$fixedCost.fixedCostAmount.value 円</td>
-								<td>
-									<form name="modify_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/modify/fixed_cost">
-										<a class="btn btn-primary center-block" href="javascript:void(0)" onclick="document.modify_${fixedCost.fixedCostId.value}.submit();return false;">変更</a>
-										<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
-										#springFormHiddenInput("user")
-									</form>
-								</td>
-								<td>
-									<form name="delete_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/delete/fixed_cost">
-										<a class="btn btn-danger center-block" href="javascript:void(0)" onclick="document.delete_${fixedCost.fixedCostId.value}.submit();return false;">削除</a>
-										<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
-										#springFormHiddenInput("user")
-									</form>
-								</td>
-							</tr>
-							#end
-						</tbody>
-					</table>
+					<div class="panel panel-default">
+						<div class="table-responsive scroll-box">
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>固定費名</th>
+										<th>固定費額</th>
+										<th colspan="2">変更・削除</th>
+									</tr>
+								</thead>
+								<tbody>
+									#foreach($fixedCost in $!fixedCostList.fixedCostList)
+									<tr>
+										<td>$fixedCost.fixedCostName.value</td>
+										<td>$fixedCost.fixedCostAmount.value 円</td>
+										<td>
+											<form name="modify_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/modify/fixed_cost">
+												<a class="btn btn-primary center-block" href="javascript:void(0)" onclick="document.modify_${fixedCost.fixedCostId.value}.submit();return false;">変更</a>
+												<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
+												#springFormHiddenInput("user")
+											</form>
+										</td>
+										<td>
+											<form name="delete_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/delete/fixed_cost">
+												<a class="btn btn-danger center-block" href="javascript:void(0)" onclick="document.delete_${fixedCost.fixedCostId.value}.submit();return false;">削除</a>
+												<input type=hidden name="fixedCostId" value="${fixedCost.fixedCostId.value}">
+												#springFormHiddenInput("user")
+											</form>
+										</td>
+									</tr>
+									#end
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-offset-3 col-sm-6 margin">

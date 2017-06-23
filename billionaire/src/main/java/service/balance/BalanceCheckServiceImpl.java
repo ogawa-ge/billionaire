@@ -24,7 +24,7 @@ public class BalanceCheckServiceImpl implements BalanceCheckService{
 	}
 	@Override
 	public boolean isNotExceeds(UserId userId, Integer date) {/*超えていない*/
-		return Integer.parseInt(incomeRepository.findBy(userId).incomeRevenueDate().value()) > date;
+		return Integer.valueOf(incomeRepository.findBy(userId).incomeRevenueDate().value()) > date;
 	}
 
 	@Override

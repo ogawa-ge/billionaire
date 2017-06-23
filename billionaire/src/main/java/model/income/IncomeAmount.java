@@ -16,6 +16,9 @@ public class IncomeAmount implements Serializable{
 	public IncomeAmount(String value){ this.value = value; }
 	public IncomeAmount(){ value = ""; }
 
+	public String value(){
+		return value;
+	}
 	@Deprecated
 	public void setValue(String value){
 		this.value = value;
