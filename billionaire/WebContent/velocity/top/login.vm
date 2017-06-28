@@ -27,7 +27,7 @@
 				<div class="col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<span style="color : red">$!loginError</span>
+							<span class="text-danger">$!loginError</span>
 							<form class="form-horizontal" id="login" action="${link.contextURL}/login/check" method="post">
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-3 control-label">メールアドレス</label>
@@ -36,7 +36,7 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-offset-3 col-sm-12">
-											#springShowErrors("<br>" "color : red")
+											#springShowErrors("<br>" "text-danger")
 										</div>
 									</div>
 								</div>
@@ -47,7 +47,7 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-offset-3 col-sm-12">
-											#springShowErrors("<br>" "color : red")
+											#springShowErrors("<br>" "text-danger")
 										</div>
 									</div>
 								</div>

@@ -28,7 +28,7 @@
 					#parse("expense/daily_budget_panel.vm")
 				</div>
 				<div class="col-sm-6">
-					#set ($temp = $intConv.parseInt($balance.balanceAmount.value))
+					#set ($temp = $intConv.valueOf($balance.balanceAmount.value))
 					#if($temp > 0)
 						<div class="panel panel-success">
 							<div class="panel-heading">
@@ -70,59 +70,24 @@
 						<div class="col-sm-12">
 							<h3 align="center">本日は　<u>$date</u>　です。</h3>
 							<div class="panel panel-default">
-								<table class="table table-striped table-bordered calendar">
-									<thead align="center">
-										<tr>
-											<th>日</th>
-											<th>月</th>
-											<th>火</th>
-											<th>水</th>
-											<th>木</th>
-											<th>金</th>
-											<th>土</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr align="center">
-										#foreach($calendar in $!calendarList.calendarDailyDetailList)
-											#set ($budget = $!esc.html($!{calendar.budget.value}))
-											#set ($temp = 0 )
-											#if($budget != "---")
-												#set ($temp = $intConv.parseInt($!esc.html($!{calendar.budget.value})))
-											#end
-											#if($temp > 0)
-												<td class="success">
-													<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-success">
-														<b>$!number.format($budget)</b>
-													</a>
-												</td>
-											#elseif($temp < 0)
-												<td class="danger">
-													<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-													<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-danger">
-														<b>$!number.format($budget)</b>
-													</a>
-												</td>
-											#else
-												<td>
-													<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
-													#if($budget == "---")
-														$budget
-													#else
-														<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">
-															$!number.format($budget)
-														</a>
-													#end
-												</td>
-											#end
-											#if($velocityCount % 7 == 0)
-												</tr><tr align="center">
-											#end
-										#end
-										</tr>
-									</tbody>
-								</table>
+								<div class="panel-heading">
+									<h4 align="center">$month 月</h4>
+								</div>
+								#parse("top/top_calendar_table.vm")
+							</div>
+							<form id="lastMonth" action="${link.contextURL}/top/last" method="post"></form>
+							<form id="thisMonth" action="${link.contextURL}/top"></form>
+							<form id="nextMonth" action="${link.contextURL}/top/next" method="post"></form>
+							<div class="btn-group btn-group-justified margin" role="group">
+								<div class="btn-group" role="group">
+									<button type="submit" class="btn btn-primary" form="lastMonth">先月</button>
+								</div>
+								<div class="btn-group" role="group">
+									<button type="submit" class="btn btn-primary" form="thisMonth">今月</button>
+								</div>
+								<div class="btn-group" role="group">
+									<button type="submit" class="btn btn-primary" form="nextMonth">来月</button>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -45,13 +45,13 @@ public class DailyBudgetDataAccess implements DailyBudgetRepository{
 	}
 
 	@Override
-	public CalendarList listOf(UserId userId) {
+	public CalendarList listOf(UserId userId, Integer value) {
 		List<CalendarDailyDetail> calendarList = new ArrayList<CalendarDailyDetail>();
 
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Integer year = calendar.get(Calendar.YEAR);
-		Integer month = calendar.get(Calendar.MONTH);
+		Integer month = calendar.get(Calendar.MONTH) + value;
 		Integer count = 0;
 
 		/* 今月が何曜日から開始されているか確認する */
@@ -72,7 +72,7 @@ public class DailyBudgetDataAccess implements DailyBudgetRepository{
 			calendarList.add((CalendarDailyDetail) dailyBudgetMapper.listOf(userId, simpleDateFormat.format(calendar.getTime())));
 			if(calendarList.get(count) == null)
 				calendarList.set(count, new CalendarDailyDetail(new CalendarDetailDate(Integer.toString(calendar.get(Calendar.YEAR)),
-																						Integer.toString(calendar.get(Calendar.MONTH)),
+																						Integer.toString(calendar.get(Calendar.MONTH) + 1),
 																						Integer.toString(calendar.get(Calendar.DATE)))));
 			count++;
 		}
@@ -83,7 +83,7 @@ public class DailyBudgetDataAccess implements DailyBudgetRepository{
 			calendarList.add(dailyBudgetMapper.listOf(userId, simpleDateFormat.format(calendar.getTime())));
 			if(calendarList.get(count) == null)
 				calendarList.set(count, new CalendarDailyDetail(new CalendarDetailDate(Integer.toString(calendar.get(Calendar.YEAR)),
-																						Integer.toString(calendar.get(Calendar.MONTH)),
+																						Integer.toString(calendar.get(Calendar.MONTH) + 1),
 																						Integer.toString(calendar.get(Calendar.DATE)))));
 			count++;
 		}
@@ -91,11 +91,11 @@ public class DailyBudgetDataAccess implements DailyBudgetRepository{
 		/* 翌月分の日付を格納する */
 		Integer nextMonthDay = 1;
 		while (count % 7 != 0){
-			calendar.set(year, month, nextMonthDay++);
+			calendar.set(year, month + 1, nextMonthDay++);
 			calendarList.add(dailyBudgetMapper.listOf(userId, simpleDateFormat.format(calendar.getTime())));
 			if(calendarList.get(count) == null)
 				calendarList.set(count, new CalendarDailyDetail(new CalendarDetailDate(Integer.toString(calendar.get(Calendar.YEAR)),
-																						Integer.toString(calendar.get(Calendar.MONTH)),
+																						Integer.toString(calendar.get(Calendar.MONTH) + 1),
 																						Integer.toString(calendar.get(Calendar.DATE)))));
 			count++;
 		}

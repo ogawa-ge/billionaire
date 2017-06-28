@@ -1,5 +1,5 @@
 #set ($intConv = 1 )
-#set ($temp = $intConv.parseInt($dailyBudget.budget.value))
+#set ($temp = $intConv.valueOf($dailyBudget.budget.value))
 #if($temp > 0)
 	<div class="panel panel-success">
 		<div class="panel-heading">

@@ -65,8 +65,17 @@
 								#parse("expense/expense_register_table.vm")
 							</form>
 							<form id="escape" action="${link.contextURL}/expense/list/$!escape" method="post">
-								#springFormHiddenInput("user")
 							</form>
+							<div class="col-sm-6 col-sm-offset-3">
+								<div class="panel panel-danger">
+									<div class="panel-heading">
+										注意！
+									</div>
+									<div class="panel-body">
+										<span class="text-danger">過去日の出費変更の場合、今日の使用可能金額の変更はございません。</span>
+									</div>
+								</div>
+							</div>
 							<button type="submit" class="btn btn-primary col-sm-5" form="escape">もどる</button>
 							<button type="submit" class="btn btn-success col-sm-5  pull-right" form="expense_modify">編集完了</button>
 						</div>

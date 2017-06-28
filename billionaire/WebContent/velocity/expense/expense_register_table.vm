@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label for="inputExpenseName">出費名</label>
 		#springFormInput("expense.expenseName.value" 'class="form-control" placeholder="出費名を入力してください。"')
-		#springShowErrors("<br>" "color : red")
+		#springShowErrors("<br>" "text-danger")
 	</div>
 	<div class="form-group">
 		<label for="inputExpenseCategory">*カテゴリ</label>
@@ -16,10 +16,10 @@
 			<span class="input-group-addon">円</span>
 		</div>
 	</div>
-	#springShowErrors("<br>" "color : red")
+	#springShowErrors("<br>" "text-danger")
 	<div class="form-group">
 		<label for="inputExpenseMemo">備考</label>
 		#springFormTextarea("expense.expenseMemo.value" 'rows="3" class="form-control" placeholder="備考を入力してください。"')
-		#springShowErrors("<br>" "color : red")
+		#springShowErrors("<br>" "text-danger")
 	</div>
 </div>

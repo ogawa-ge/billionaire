@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import model.fixedcost.FixedCost;
-import model.user.User;
 import service.fixedcost.FixedCostFindService;
 import service.fixedcost.FixedCostModifyService;
 
@@ -27,7 +27,11 @@ public class FixedCostModifyController {
 	private FixedCostModifyService fixedCostModifyService;
 
 	@RequestMapping(method=RequestMethod.POST, params="fixedCostId")
-	public String modyfy(Model model, @RequestParam("fixedCostId") Integer fixedCostId, @ModelAttribute("user") User user){
+	public String modyfy(Model model, @RequestParam("fixedCostId") Integer fixedCostId, WebRequest webRequest ){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "redirect:../login";
+		}
+
 		model.addAttribute("fixedCost", fixedCostFindService.findBy(fixedCostId));
 		return "fixed_cost/fixed_cost_modify";
 	}

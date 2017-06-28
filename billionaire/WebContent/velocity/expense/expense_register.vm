@@ -33,10 +33,14 @@
 							<form id="escape" action="${link.contextURL}/expense/list/$!escape" method="post">
 								#springFormHiddenInput("user")
 							</form>
-							<button type="submit" class="btn btn-primary col-sm-5" form="escape">もどる</button>
-							<button type="submit" class="btn btn-success col-sm-5  pull-right" form="expense_register">登録</button>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-primary col-sm-5 margin" form="escape">もどる</button>
+					<button type="submit" class="btn btn-success col-sm-5 pull-right margin" form="expense_register">登録</button>
 				</div>
 			</div>
 		</div>

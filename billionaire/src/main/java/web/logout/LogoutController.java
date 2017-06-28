@@ -11,6 +11,6 @@ public class LogoutController {
 	@RequestMapping
 	public String logout(WebRequest webRequest){
 		webRequest.removeAttribute("user", WebRequest.SCOPE_SESSION);
-		return "redirect:./top";
+		return "redirect:./";
 	}
 }

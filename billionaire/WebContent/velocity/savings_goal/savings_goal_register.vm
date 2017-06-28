@@ -33,14 +33,14 @@
 									#springFormHiddenInput("savingsGoal.userId.value")
 									<div class="form-group">
 										<label for="inputSavingsGoalAmountCostName">毎月の貯金目標</label>
-										<div class="input-group col-sm-8 col-sm-offset-2">
+										<div class="input-group col-sm-8">
 											<span class="input-group-addon">毎月</span>
 											#springFormInput("savingsGoal.savingsGoalAmount.value" 'class="form-control" placeholder="毎月の貯金目標を入力してください。"')
 											<span class="input-group-addon">円</span>
 										</div>
-										#springShowErrors("<br>" "color : red")
+										#springShowErrors("<br>" "text-danger")
 										#springBind("savingsGoal.savingsGoal")
-										#springShowErrors("<br>" "color : red")
+										#springShowErrors("<br>" "text-danger")
 									</div>
 								</div>
 							</form>

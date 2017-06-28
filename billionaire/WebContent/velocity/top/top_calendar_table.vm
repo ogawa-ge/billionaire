@@ -1,0 +1,101 @@
+<table class="table table-bordered calendar">
+	<thead align="center">
+		<tr>
+			<th class="sunday">日</th>
+			<th>月</th>
+			<th>火</th>
+			<th>水</th>
+			<th>木</th>
+			<th>金</th>
+			<th class="saturday">土</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr align="center">
+		#foreach($calendar in $!calendarList.calendarDailyDetailList)
+			#set ($budget = $!esc.html($!{calendar.budget.value}))
+			#set ($temp = 0 )
+			##日毎の予算が存在するか判定
+			#if($budget != "---")
+				#set ($temp = $intConv.valueOf($!esc.html($!{calendar.budget.value})))
+			#end
+
+			##土日判定
+			#if($velocityCount % 7 == 1)
+				<td class="sunday
+			#elseif($velocityCount % 7 == 0)
+				<td class="saturday
+			#else
+				<td class="
+			#end
+
+			##今日か判定
+			#if($dailyBudget.dailyBudgetDate.value == $calendar.calendarDetailDate.year+"-"+$calendar.calendarDetailDate.month+"-"+$calendar.calendarDetailDate.day)
+				today
+			#end
+
+			##今月か判定
+			#if($month == $intConv.valueOf($calendar.calendarDetailDate.month))
+				#if($temp > 0)
+					success">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-success">
+							<b>$!number.format($budget)円</b>
+						</a>
+					</td>
+				#elseif($temp < 0)
+					danger">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-danger">
+							<b>$!number.format($budget)円</b>
+						</a>
+					</td>
+				#else
+					">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						#if($budget == "---")
+							$budget
+						#else
+							<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">
+								$!number.format($budget)
+							</a>
+						#end
+					</td>
+				#end
+			#else
+				#if($temp > 0)
+					other-month">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-success">
+							<b>$!number.format($budget)円</b>
+						</a>
+					</td>
+				#elseif($temp < 0)
+					other-month">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})" class="text-danger">
+							<b>$!number.format($budget)円</b>
+						</a>
+					</td>
+				#else
+					other-month">
+						<p>$!esc.html(${calendar.calendarDetailDate.day})</p>
+						#if($budget == "---")
+							$budget
+						#else
+							<a href="${link.contextURL}/expense/list/$!esc.html(${calendar.calendarDetailDate.year})$!esc.html(${calendar.calendarDetailDate.month})$!esc.html(${calendar.calendarDetailDate.day})">
+								$!number.format($budget)
+							</a>
+						#end
+					</td>
+				#end
+			#end
+
+			##週末判定
+			#if($velocityCount % 7 == 0)
+				</tr><tr align="center">
+			#end
+		#end
+		</tr>
+	</tbody>
+</table>

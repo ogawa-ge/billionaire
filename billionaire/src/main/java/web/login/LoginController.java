@@ -55,7 +55,7 @@ public class LoginController {
 			/*毎月の収入が設定されているか判定*/
 			if(incomeCheckService.isNotExists(user.userId())) return "redirect:./register/income";
 			/*毎月の貯金目標が設定されているか判定*/
-			if(savingsGoalCheckService.isNotExists(user.userId())) return "redirect:./register/savings_goal";
+			if(savingsGoalCheckService.isNotExists(user.userId())) return "redirect:./register/fixed_cost/list";
 			/*今月の使用残高が設定されているか判定*/
 			Calendar calendar = Calendar.getInstance();
 			if(balanceCheckService.isNotExists(user.userId())){
@@ -88,7 +88,7 @@ public class LoginController {
 		/*毎月の収入が設定されているか判定*/
 		if(incomeCheckService.isNotExists(user.userId())) return "redirect:../register/income";
 		/*毎月の貯金目標が設定されているか判定*/
-		if(savingsGoalCheckService.isNotExists(user.userId())) return "redirect:../register/savings_goal";
+		if(savingsGoalCheckService.isNotExists(user.userId())) return "redirect:../register/fixed_cost/list";
 		/*今月の使用残高が設定されているか判定*/
 		Calendar calendar = Calendar.getInstance();
 		if(balanceCheckService.isNotExists(user.userId())){

@@ -1,7 +1,5 @@
 package web.savings.goal;
 
-import java.util.Calendar;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 
-import model.balance.BalanceMonth;
 import model.savings.goal.SavingsGoal;
 import model.savings.goal.SavingsGoalFactory;
 import model.user.User;
-import service.balance.BalanceCalcService;
-import service.balance.BalanceCheckService;
-import service.balance.BalanceRegisterService;
 import service.savings.goal.SavingsGoalCheckService;
 import service.savings.goal.SavingsGoalRegisterService;
 
@@ -34,12 +28,12 @@ public class SavingsGoalRegisterController {
 	private SavingsGoalFactory savingsGoalFactory;
 	@Autowired
 	private SavingsGoalCheckService savingsGoalCheckService;
-	@Autowired
-	private BalanceCheckService balanceCheckService;
-	@Autowired
-	private BalanceRegisterService balanceRegisterService;
-	@Autowired
-	private BalanceCalcService balanceCalcService;
+//	@Autowired
+//	private BalanceCheckService balanceCheckService;
+//	@Autowired
+//	private BalanceRegisterService balanceRegisterService;
+//	@Autowired
+//	private BalanceCalcService balanceCalcService;
 
 	@RequestMapping
 	public String register(Model model, WebRequest webRequest ){
@@ -66,10 +60,10 @@ public class SavingsGoalRegisterController {
 		savingsGoalRegisterService.register(savingsGoal, user.userId());
 
 		/*今月の使用残高が設定されているか判定*/
-		Calendar calendar = Calendar.getInstance();
-		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
-			balanceRegisterService.register(user.userId(), balanceCalcService.differenceCalc(user.userId()), new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+2)));
-		else balanceRegisterService.register(user.userId(), balanceCalcService.differenceCalc(user.userId()), new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+1)));
+//		Calendar calendar = Calendar.getInstance();
+//		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
+//			balanceRegisterService.register(user.userId(), balanceCalcService.differenceCalc(user.userId()), new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+2)));
+//		else balanceRegisterService.register(user.userId(), balanceCalcService.differenceCalc(user.userId()), new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+1)));
 
 		return "redirect:../../top";
 	}

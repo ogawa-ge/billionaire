@@ -43,7 +43,11 @@ public class ExpenseModifyController {
 	private BalanceModifyService balanceModifyService;
 
 	@RequestMapping(method=RequestMethod.POST, params="expenseId")
-	public String modify(Model model, @RequestParam("expenseId") Integer expenseId, @ModelAttribute("user") User user, WebRequest webRequest){
+	public String modify(Model model, @RequestParam("expenseId") Integer expenseId, WebRequest webRequest ){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "redirect:../login";
+		}
+
 		Calendar calendar = (Calendar) webRequest.getAttribute("expenseDate", WebRequest.SCOPE_SESSION);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		SimpleDateFormat escapeSimpleDateFormat = new SimpleDateFormat("yyyyMMdd");

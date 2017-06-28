@@ -3,6 +3,7 @@ package model.user;
 import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import model.groups.RegisterGroup;
@@ -10,6 +11,7 @@ import model.groups.RegisterGroup;
 public class UserMail implements Serializable{
 	@NotBlank(message="メールアドレスを入力してください。")
 	@Email(message="正しいメールアドレスを入力してください。")
+	@Length(min=1, max=40, message="メールアドレスを{min}から{max}文字以内で入力してください。")
 	@UnUsedMail(groups={RegisterGroup.class})
 	private String value;
 

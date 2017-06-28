@@ -13,8 +13,8 @@ public class CalendarListingServiceImpl implements CalendarListingService{
 	private DailyBudgetRepository dailyBudgetRepository;
 
 	@Override
-	public CalendarList listOf(UserId userId){
-		return dailyBudgetRepository.listOf(userId);
+	public CalendarList listOf(UserId userId, Integer value){
+		return dailyBudgetRepository.listOf(userId, value);
 	}
 
 }

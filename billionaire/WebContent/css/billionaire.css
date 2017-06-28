@@ -1,25 +1,75 @@
-.calendar{
-	table-layout: fixed;
+/* ALL */
+body{
+	word-break: break-all;
 }
-.calendar .success, .calendar .danger{
-	padding-left: 0px;
-	padding-right: 0px;
+table th{
+	text-align: center;
 }
 .margin{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-table th{
-	text-align: center;
+
+/* TOP */
+.calendar{
+	table-layout: fixed;
 }
+.calendar .success, .calendar .danger, .calendar .other-month{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+th.saturday{
+	color: blue;
+}
+.saturday p{
+	color: blue;
+}
+th.sunday{
+	color: red;
+}
+.sunday p{
+	color: red;
+}
+.other-month{
+	background-color: #c6c6c6;
+}
+.other-month p{
+	color: gray;
+}
+.panel>.table-bordered>tbody>tr:first-child>td.today{
+	border: 2px solid orange;
+}
+.table>tbody>tr>td.today{
+	border: 2px solid orange;
+}
+
+
+/* EXPENSE LIST, FIXED COST LIST */
 .scroll-box::-webkit-scrollbar {
-  height: 5px;
+	height: 5px;
 }
 .scroll-box::-webkit-scrollbar-track {
-  border-radius: 5px;
-  background: #eee;
+	border-radius: 5px;
+	background: #eee;
 }
 .scroll-box::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background: #666;
+	border-radius: 5px;
+	background: #666;
+}
+
+/* SAVINGS PERFORMANCE */
+div.over-frow-y{
+	overflow: scroll;
+}
+.scroll-box-y::-webkit-scrollbar {
+	width: 5px;
+	height: 0;
+}
+.scroll-box-y::-webkit-scrollbar-track {
+	border-radius: 5px;
+	background: #eee;
+}
+.scroll-box-y::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background: #666;
 }

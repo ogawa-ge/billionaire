@@ -6,7 +6,9 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 
@@ -74,6 +76,65 @@ public class TopController {
 	@RequestMapping("top")
 	public String top(Model model, WebRequest webRequest){
 		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "redirect:login";
+		}
+
+		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
+
+		Integer balanceAmount = Integer.valueOf(balanceFindService.findBy(user.userId()).balanceAmount().value());
+
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar nextRevenueDateCalendar = Calendar.getInstance();
+		nextRevenueDateCalendar.set(Calendar.DATE, Integer.valueOf(incomeFindService.findBy(user.userId()).incomeRevenueDate().value()));
+
+		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
+			nextRevenueDateCalendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
+
+		if(dailyBudgetCheckService.isNotExists(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())))){
+	        Long diffTime = nextRevenueDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
+	        Integer MILLIS_OF_DAY = 1000 * 60 * 60 * 24;
+	        Integer diffDays = (int)(diffTime / MILLIS_OF_DAY);
+	        Integer dailyBudget = balanceAmount / diffDays;
+
+	        dailyBudgetRegisterService.register(user.userId(),
+        										new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())),
+        										new Budget(dailyBudget.toString()));
+        }
+
+
+		if(incomeCheckService.isExceeds(user.userId(), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DATE))){
+			Integer savingsGoalAmount = Integer.valueOf(savingsGoalFindService.findBy(user.userId()).savingsGoalAmount().value());
+			Integer savingsPerformanceAmount = balanceAmount + savingsGoalAmount;
+
+			savingsPerformanceRegisterService.register(user.userId(),
+														savingsPerformanceFactory.create(simpleDateFormat.format(calendar.getTime()),
+																						savingsPerformanceAmount.toString(),
+																						savingsGoalAmount.toString()));
+			if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE))){
+				balanceModifyService.modify(user.userId(),
+											balanceCalcService.differenceCalc(user.userId()),
+											new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+2)));
+			}else{
+				balanceModifyService.modify(user.userId(),
+											balanceCalcService.differenceCalc(user.userId()),
+											new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+1)));
+			}
+		}
+
+		model.addAttribute("dailyBudget", dailyBudgetFindService.findBy(user.userId(),
+																	new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));
+		model.addAttribute("balance", balanceFindService.findBy(user.userId()));
+		model.addAttribute("month", calendar.get(Calendar.MONTH) + 1);
+		model.addAttribute("date", simpleDateFormat.format(calendar.getTime()));
+		model.addAttribute("calendarList", calendarListingService.listOf(user.userId(), 0));
+
+		return "top/top";
+	}
+
+	@RequestMapping(value="top/{month}", method=RequestMethod.POST)
+	public String modifyTopCalendar(Model model, WebRequest webRequest, @PathVariable("month") String value){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
 			return "redirect:./";
 		}
 
@@ -124,9 +185,17 @@ public class TopController {
 																	new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));
 		model.addAttribute("balance", balanceFindService.findBy(user.userId()));
 		model.addAttribute("date", simpleDateFormat.format(calendar.getTime()));
-		model.addAttribute("calendarList", calendarListingService.listOf(user.userId()));
+		model.addAttribute("calendarList", calendarListingService.listOf(user.userId(), 0));
 
-		return "top/top";
+		if(value.equals("next")){
+			model.addAttribute("month", calendar.get(Calendar.MONTH) + 2);
+			model.addAttribute("calendarList", calendarListingService.listOf(user.userId(), 1));
+			return "top/top";
+		}else{
+			model.addAttribute("month", calendar.get(Calendar.MONTH));
+			model.addAttribute("calendarList", calendarListingService.listOf(user.userId(), -1));
+			return "top/top";
+		}
 	}
 
 }

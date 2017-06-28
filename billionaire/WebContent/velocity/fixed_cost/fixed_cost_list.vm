@@ -36,7 +36,7 @@
 						</div>
 						<div class="panel-body">
 							#if($!esc.html($!fixedCostTotal) != $null)
-								<h3 align="right">$!esc.html($!fixedCostTotal) 円</h3>
+								<h3 align="right">$!number.format($!esc.html($!fixedCostTotal)) 円</h3>
 							#else
 								<h3 align="right">--- 円</h3>
 							#end
@@ -59,8 +59,8 @@
 								<tbody>
 									#foreach($fixedCost in $!fixedCostList.fixedCostList)
 									<tr>
-										<td>$fixedCost.fixedCostName.value</td>
-										<td>$fixedCost.fixedCostAmount.value 円</td>
+										<td>$!esc.html($fixedCost.fixedCostName.value)</td>
+										<td>$!number.format($!esc.html($fixedCost.fixedCostAmount.value)) 円</td>
 										<td>
 											<form name="modify_${fixedCost.fixedCostId.value}" method="post" action="${link.contextURL}/modify/fixed_cost">
 												<a class="btn btn-primary center-block" href="javascript:void(0)" onclick="document.modify_${fixedCost.fixedCostId.value}.submit();return false;">変更</a>
@@ -82,11 +82,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-offset-3 col-sm-6 margin">
-						<div class="btn-group btn-group-justified" role="group">
-							<a class="btn btn-primary" href="${link.contextURL}/register/savings_goal" role="button">次へ</a>
-						</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6 margin">
+					<div class="btn-group btn-group-justified" role="group">
+						<a class="btn btn-success" href="${link.contextURL}/register/savings_goal" role="button">次へ</a>
 					</div>
 				</div>
 			</div>

@@ -2,9 +2,12 @@ package model.balance;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 public class Balance implements Serializable{
 	private BalanceId balanceId;
 	private BalanceMonth balanceMonth;
+	@Valid
 	private BalanceAmount balanceAmount;
 
 	public Balance(BalanceId balanceId, BalanceMonth balanceMonth, BalanceAmount balanceAmount){

@@ -31,19 +31,19 @@
 								<div class="form-group">
 									<label for="inputName" class="control-label">お名前</label>
 									#springFormInput("user.userName.value" 'class="form-control" placeholder="お名前を入力してください。"')
-									#springShowErrors("<br>" "color : red")
+									#springShowErrors("<br>" "text-danger")
 								</div>
 								<div class="form-group">
 									<label for="inputEmail" class="control-label">メールアドレス</label>
 									#springFormInput("user.userMail.value" 'class="form-control" placeholder="メールアドレスを入力してください。"')
-									#springShowErrors("<br>" "color : red")
+									#springShowErrors("<br>" "text-danger")
 									<span id="helpBlock" class="help-block">※メールアドレスは、ログインの際必要になります。</span>
-									<span style="color : red">$!registerError</span>
+									<span class="text-danger">$!registerError</span>
 								</div>
 								<div class="form-group">
 									<label for="inputPassword" class="control-label">パスワード</label>
 									#springFormPasswordInput("user.userPassword.value" 'class="form-control" placeholder="パスワードを入力してください。"')
-									#springShowErrors("<br>" "color : red")
+									#springShowErrors("<br>" "text-danger")
 								</div>
 								<br>
 								<h3>利用規約</h3>
@@ -69,11 +69,6 @@
 ょ
 い
 								</pre>
-								#*<div class="checkbox">
-									<label class="col-sm-12" align="center">
-										<input type="checkbox">利用規約に同意する
-									</label>
-								</div>*#
 							</form>
 							<a role="button" class="btn btn-primary col-sm-5 margin" href="${link.contextURL}/">TOPへ戻る</a>
 							<button type="submit" class="btn btn-success col-sm-5 margin pull-right" form="user_register_confirm">登録確認</button>

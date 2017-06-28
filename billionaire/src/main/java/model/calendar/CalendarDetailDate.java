@@ -18,6 +18,16 @@ public class CalendarDetailDate implements Serializable{
 		day = "-";
 	}
 
+	public String year(){
+		return year;
+	}
+	public String month(){
+		return month;
+	}
+	public String day(){
+		return day;
+	}
+
 	@Deprecated
 	public void setYear(String year){
 		this.year = year;

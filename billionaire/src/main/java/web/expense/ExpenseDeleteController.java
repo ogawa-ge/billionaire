@@ -37,7 +37,11 @@ public class ExpenseDeleteController {
 	private BalanceModifyService balanceModifyService;
 
 	@RequestMapping(method=RequestMethod.POST)
-	public String delete(@RequestParam("expenseId") Integer expenseId, WebRequest webRequest){
+	public String delete(@RequestParam("expenseId") Integer expenseId, WebRequest webRequest ){
+		if(webRequest.getAttribute("user", WebRequest.SCOPE_SESSION) == null){
+			return "redirect:../login";
+		}
+
 		User user = (User) webRequest.getAttribute("user", WebRequest.SCOPE_SESSION);
 		Calendar calendar = (Calendar) webRequest.getAttribute("expenseDate", WebRequest.SCOPE_SESSION);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
