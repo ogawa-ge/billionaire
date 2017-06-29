@@ -78,5 +78,12 @@
 				<div class="col-sm-2"></div>
 			</div>
 		</div>
+		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
+				</div>
+			</div>
+		</nav>
 	</body>
 </html>
