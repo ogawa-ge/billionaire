@@ -75,20 +75,49 @@
 								</div>
 								#parse("top/top_calendar_table.vm")
 							</div>
-							<form id="lastMonth" action="${link.contextURL}/top/last" method="post"></form>
-							<form id="thisMonth" action="${link.contextURL}/top"></form>
-							<form id="nextMonth" action="${link.contextURL}/top/next" method="post"></form>
-							<div class="btn-group btn-group-justified margin" role="group">
-								<div class="btn-group" role="group">
-									<button type="submit" class="btn btn-primary" form="lastMonth"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>　先月</button>
+							#if(${link.requestPath} == "/top")
+								<form id="lastMonth" action="${link.contextURL}/top/last" method="post"></form>
+								<form id="nextMonth" action="${link.contextURL}/top/next" method="post"></form>
+								<div class="btn-group btn-group-justified margin" role="group">
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="lastMonth"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>　先月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-primary active">今月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="nextMonth">来月　<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+									</div>
 								</div>
-								<div class="btn-group" role="group">
-									<button type="submit" class="btn btn-primary" form="thisMonth">今月</button>
+							#elseif(${link.requestPath} == "/top/last")
+								<form id="thisMonth" action="${link.contextURL}/top"></form>
+								<form id="nextMonth" action="${link.contextURL}/top/next" method="post"></form>
+								<div class="btn-group btn-group-justified margin" role="group">
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-primary active"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>　先月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="thisMonth">今月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="nextMonth">来月　<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+									</div>
 								</div>
-								<div class="btn-group" role="group">
-									<button type="submit" class="btn btn-primary" form="nextMonth">来月　<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+							#elseif(${link.requestPath} == "/top/next")
+								<form id="lastMonth" action="${link.contextURL}/top/last" method="post"></form>
+								<form id="thisMonth" action="${link.contextURL}/top"></form>
+								<div class="btn-group btn-group-justified margin" role="group">
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="lastMonth"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>　先月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="submit" class="btn btn-primary" form="thisMonth">今月</button>
+									</div>
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-primary active">来月　<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+									</div>
 								</div>
-							</div>
+							#end
 						</div>
 					</div>
 				</div>
