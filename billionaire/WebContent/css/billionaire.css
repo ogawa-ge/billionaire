@@ -48,6 +48,9 @@ th.sunday{
 #hungry{
 	margin: 0;
 }
+.margin-bot{
+	margin-bottom: 20px;
+}
 
 /* EXPENSE LIST, FIXED COST LIST */
 .scroll-box::-webkit-scrollbar {
