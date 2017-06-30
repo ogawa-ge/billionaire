@@ -40,5 +40,15 @@
 			income.user_id = #{userId.value}
 	</select>
 
+	<update id="modify">
+	UPDATE
+		account.income
+	SET
+		amount = #{income.incomeAmount.value},
+		revenue_date = #{income.incomeRevenueDate.value}
+	WHERE
+		user_id = #{userId.value}
+	</update>
+
 
 </mapper>

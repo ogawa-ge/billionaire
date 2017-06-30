@@ -91,18 +91,6 @@ public class TopController {
 		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
 			nextRevenueDateCalendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
 
-		if(dailyBudgetCheckService.isNotExists(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())))){
-	        Long diffTime = nextRevenueDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
-	        Integer MILLIS_OF_DAY = 1000 * 60 * 60 * 24;
-	        Integer diffDays = (int)(diffTime / MILLIS_OF_DAY);
-	        Integer dailyBudget = balanceAmount / diffDays;
-
-	        dailyBudgetRegisterService.register(user.userId(),
-        										new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())),
-        										new Budget(dailyBudget.toString()));
-        }
-
-
 		if(incomeCheckService.isExceeds(user.userId(), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DATE))){
 			Integer savingsGoalAmount = Integer.valueOf(savingsGoalFindService.findBy(user.userId()).savingsGoalAmount().value());
 			Integer savingsPerformanceAmount = balanceAmount + savingsGoalAmount;
@@ -122,13 +110,25 @@ public class TopController {
 			}
 		}
 
+		if(dailyBudgetCheckService.isNotExists(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())))){
+	        Long diffTime = nextRevenueDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
+	        Integer MILLIS_OF_DAY = 1000 * 60 * 60 * 24;
+	        Integer diffDays = (int)(diffTime / MILLIS_OF_DAY);
+	        Integer dailyBudget = balanceAmount / diffDays;
+
+	        dailyBudgetRegisterService.register(user.userId(),
+        										new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())),
+        										new Budget(dailyBudget.toString()));
+        }
+
+
+
 		model.addAttribute("dailyBudget", dailyBudgetFindService.findBy(user.userId(),
 																	new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));
 		model.addAttribute("balance", balanceFindService.findBy(user.userId()));
 		model.addAttribute("month", calendar.get(Calendar.MONTH) + 1);
 		model.addAttribute("date", simpleDateFormat.format(calendar.getTime()));
 		model.addAttribute("calendarList", calendarListingService.listOf(user.userId(), 0));
-
 		return "top/top";
 	}
 
@@ -150,18 +150,6 @@ public class TopController {
 		if(balanceCheckService.isExceeds(user.userId(), calendar.get(Calendar.DATE)))
 			nextRevenueDateCalendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
 
-		if(dailyBudgetCheckService.isNotExists(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())))){
-	        Long diffTime = nextRevenueDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
-	        Integer MILLIS_OF_DAY = 1000 * 60 * 60 * 24;
-	        Integer diffDays = (int)(diffTime / MILLIS_OF_DAY);
-	        Integer dailyBudget = balanceAmount / diffDays;
-
-	        dailyBudgetRegisterService.register(user.userId(),
-        										new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())),
-        										new Budget(dailyBudget.toString()));
-        }
-
-
 		if(incomeCheckService.isExceeds(user.userId(), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DATE))){
 			Integer savingsGoalAmount = Integer.valueOf(savingsGoalFindService.findBy(user.userId()).savingsGoalAmount().value());
 			Integer savingsPerformanceAmount = balanceAmount + savingsGoalAmount;
@@ -180,6 +168,18 @@ public class TopController {
 											new BalanceMonth(String.valueOf(calendar.get(Calendar.MONTH)+1)));
 			}
 		}
+
+		if(dailyBudgetCheckService.isNotExists(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())))){
+	        Long diffTime = nextRevenueDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
+	        Integer MILLIS_OF_DAY = 1000 * 60 * 60 * 24;
+	        Integer diffDays = (int)(diffTime / MILLIS_OF_DAY);
+	        Integer dailyBudget = balanceAmount / diffDays;
+
+	        dailyBudgetRegisterService.register(user.userId(),
+        										new DailyBudgetDate(simpleDateFormat.format(calendar.getTime())),
+        										new Budget(dailyBudget.toString()));
+        }
+
 
 		model.addAttribute("dailyBudget", dailyBudgetFindService.findBy(user.userId(),
 																	new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));

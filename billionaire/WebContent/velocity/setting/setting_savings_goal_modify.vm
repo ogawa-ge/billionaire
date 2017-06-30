@@ -13,13 +13,13 @@
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Billionaire - 初期設定3/3</title>
+		<title>Billionaire - システム設定編集 毎月の貯金目標の編集</title>
 	</head>
 	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
-				<p>システムを始める前の初期設定（3/3）毎月の貯金目標の設定</p>
+				<p>システム設定編集 毎月の貯金目標の編集</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 				<div class="col-sm-offset-3 col-sm-6 margin">
 					<div class="btn-group btn-group-justified" role="group">
 						<div class="btn-group" role="group">
-							<button type="submit" class="btn btn-success" form="savings_goal_register">登録完了</button>
+							<button type="submit" class="btn btn-success" form="savings_goal_register"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>　登録完了</button>
 						</div>
 					</div>
 				</div>

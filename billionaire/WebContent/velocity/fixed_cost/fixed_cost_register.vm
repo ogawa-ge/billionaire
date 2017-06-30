@@ -19,7 +19,7 @@
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>システムを始める前の初期設定（2/3）毎月の固定費の設定―登録</p>
-				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
+				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
 		<div class="container">
@@ -39,29 +39,11 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<button type="submit" class="btn btn-primary col-sm-5 margin" form="escape">もどる</button>
-					<button type="submit" class="btn btn-success col-sm-5 pull-right margin" form="fixedCost_register">登録</button>
+					<button type="submit" class="btn btn-primary col-sm-5 margin" form="escape"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>　もどる</button>
+					<button type="submit" class="btn btn-success col-sm-5 pull-right margin" form="fixedCost_register"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>　登録</button>
 				</div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
-						<span class="sr-only">メニュー</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-
-				<div id="gnavi" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="${link.contextURL}/logout">ログアウト</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar_provisional.vm")
 	</body>
 </html>

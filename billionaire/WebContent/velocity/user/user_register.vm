@@ -70,20 +70,14 @@
 い
 								</pre>
 							</form>
-							<a role="button" class="btn btn-primary col-sm-5 margin" href="${link.contextURL}/">TOPへ戻る</a>
-							<button type="submit" class="btn btn-success col-sm-5 margin pull-right" form="user_register_confirm">登録確認</button>
+							<a role="button" class="btn btn-primary col-sm-5 margin" href="${link.contextURL}/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　TOP画面へ</a>
+							<button type="submit" class="btn btn-success col-sm-5 margin pull-right" form="user_register_confirm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>　登録確認</button>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-2"></div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar.vm")
 	</body>
 </html>

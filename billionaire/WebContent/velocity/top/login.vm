@@ -48,8 +48,8 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<a class="btn btn-primary col-sm-5" href="${link.contextURL}/" role="button">TOPへ戻る</a>
-										<button type="submit" class="btn btn-primary pull-right col-sm-5">ログイン</button>
+										<a class="btn btn-primary col-sm-5" href="${link.contextURL}/" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　TOP画面へ</a>
+										<button type="submit" class="btn btn-primary pull-right col-sm-5"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　ログイン</button>
 									</div>
 								</div>
 							</form>
@@ -58,12 +58,6 @@
 				</div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar.vm")
 	</body>
 </html>

@@ -12,57 +12,35 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<title>Billionaire - 固定費編集</title>
+		<title>Billionaire - システム設定編集 固定費</title>
 	</head>
 	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
-				<p>毎月の固定費の編集</p>
+				<p>システム設定編集 固定費―登録</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>変更前の固定費</h3>
-						</div>
-						<table class="table table-striped table-responsive">
-							<tbody>
-								<tr>
-									<th>固定費名</th>
-									<td align="center">$fixedCost.fixedCostName.value</td>
-								</tr>
-								<tr>
-									<th>固定費額</th>
-									<td align="center">$fixedCost.fixedCostAmount.value 円</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<br><br>
-			<div class="row">
 				<div class="col-sm-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>変更したい値を入力してください。</h3>
-						</div>
 						<div class="panel-body">
-							<form  id="fixedCost_modify" action="${link.contextURL}/modify/fixed_cost/execute" method="post">
-								#springFormHiddenInput("fixedCost.fixedCostId.value")
+							<form  id="fixedCost_register" action="${link.contextURL}/register/fixed_cost/execute" method="post">
 								#parse("fixed_cost/fixed_cost_register_table.vm")
 							</form>
 							<form id="escape" action="${link.contextURL}/register/fixed_cost/list" method="post">
 								#springFormHiddenInput("user")
 							</form>
-							<button type="submit" class="btn btn-primary col-sm-5" form="escape"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>　もどる</button>
-							<button type="submit" class="btn btn-success col-sm-5  pull-right" form="fixedCost_modify"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>　編集完了</button>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-primary col-sm-5 margin" form="escape"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>　もどる</button>
+					<button type="submit" class="btn btn-success col-sm-5 pull-right margin" form="fixedCost_register"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>　登録</button>
 				</div>
 			</div>
 		</div>

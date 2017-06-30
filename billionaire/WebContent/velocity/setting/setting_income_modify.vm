@@ -12,14 +12,13 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Billionaire - 初期設定3/3</title>
+		<title>Billionaire - システム設定編集 1か月の収入の編集</title>
 	</head>
 	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
-				<p>システムを始める前の初期設定（3/3）毎月の貯金目標の設定</p>
+				<p>システム設定編集 1か月の収入の編集</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
@@ -28,18 +27,31 @@
 				<div class="col-sm-12">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<form id="savings_goal_register" action="${link.contextURL}/register/savings_goal/execute" method="post">
+							<form  id="income_register" action="${link.contextURL}/register/income/execute" method="post">
 								<div class="col-sm-8 col-sm-offset-2">
-									#springFormHiddenInput("savingsGoal.userId.value")
 									<div class="form-group">
-										<label for="inputSavingsGoalAmountCostName">毎月の貯金目標</label>
+										<label for="inputIncomeAmount">1か月の収入金額</label>
 										<div class="input-group col-sm-8">
-											<span class="input-group-addon">毎月</span>
-											#springFormInput("savingsGoal.savingsGoalAmount.value" 'class="form-control" placeholder="毎月の貯金目標を入力してください。"')
+											#springFormInput("income.incomeAmount.value" 'class="form-control" placeholder="1か月の収入金額を入力してください。"')
 											<span class="input-group-addon">円</span>
 										</div>
 										#springShowErrors("<br>" "text-danger")
-										#springBind("savingsGoal.savingsGoal")
+									</div>
+									<div class="form-group">
+										<label for="inputIncomeRevenueDate">毎月の収入日</label>
+										<div class="input-group col-sm-5">
+											<span class="input-group-addon">毎月</span>
+											#springFormInput("income.incomeRevenueDate.value" 'class="form-control" placeholder="収入日を入力してください。"')
+											<span class="input-group-addon">日</span>
+										</div>
+										#springShowErrors("<br>" "text-danger")
+									</div>
+									<div class="form-group">
+										<label for="inputBalanceAmpunt">今月の残り使用可能金額</label>
+										<div class="input-group col-sm-8">
+											#springFormInput("balance.balanceAmount.value" 'class="form-control" placeholder="今月の残り使用可能金額を入力してください。"')
+											<span class="input-group-addon">円</span>
+										</div>
 										#springShowErrors("<br>" "text-danger")
 									</div>
 								</div>
@@ -52,7 +64,7 @@
 				<div class="col-sm-offset-3 col-sm-6 margin">
 					<div class="btn-group btn-group-justified" role="group">
 						<div class="btn-group" role="group">
-							<button type="submit" class="btn btn-success" form="savings_goal_register">登録完了</button>
+							<button type="submit" class="btn btn-success" form="income_register">次へ</button>
 						</div>
 					</div>
 				</div>

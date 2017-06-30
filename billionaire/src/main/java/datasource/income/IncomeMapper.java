@@ -9,4 +9,5 @@ public interface IncomeMapper {
 	public void register(@Param("income") Income income, @Param("userId") UserId userId);
 	public Income findBy(@Param("userId") UserId userId);
 	public Integer findAmount(@Param("userId") UserId userId);
+	public void modify(@Param("userId") UserId userId, @Param("income") Income income);
 }

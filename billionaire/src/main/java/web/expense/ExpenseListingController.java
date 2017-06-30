@@ -41,8 +41,8 @@ public class ExpenseListingController {
 
 
 		model.addAttribute("date", simpleDateFormat.format(calendar.getTime()));
-        model.addAttribute("dailyBudget", dailyBudgetFindService.findBy(user.userId(),
-        																new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));
+		model.addAttribute("dailyBudget", dailyBudgetFindService.findBy(user.userId(),
+																		new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))));
 
         model.addAttribute("expenseList", expenseListingService.listOf(dailyBudgetFindService.findBy(user.userId(),
         																							new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId()));
@@ -50,13 +50,23 @@ public class ExpenseListingController {
         Integer totalAmount = expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
 						new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId());
 
-        if(totalAmount != null)
+        if(totalAmount != null){
         	model.addAttribute("expenseTotal", totalAmount);
-        else
+        	Integer dailyBudget = Integer.valueOf(dailyBudgetFindService.findBy(user.userId(),
+																				new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).budget().value());
+        	Integer total = totalAmount + dailyBudget;
+        	Integer percent = (dailyBudget * 100) / total;
+        	model.addAttribute("percent", percent);
+        }else{
         	model.addAttribute("expenseTotal", "---");
+        	model.addAttribute("percent", 100);
+        }
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
         webRequest.setAttribute("expenseDate", calendar, WebRequest.SCOPE_SESSION);
+
+
+
 
         return "expense/expense_list";
 	}
@@ -94,10 +104,17 @@ public class ExpenseListingController {
         Integer totalAmount = expenseListingService.findTotal(dailyBudgetFindService.findBy(user.userId(),
 						new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId());
 
-        if(totalAmount != null)
+        if(totalAmount != null){
         	model.addAttribute("expenseTotal", totalAmount);
-        else
+        	Integer dailyBudget = Integer.valueOf(dailyBudgetFindService.findBy(user.userId(),
+																				new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).budget().value());
+        	Integer total = totalAmount + dailyBudget;
+        	Integer percent = (dailyBudget * 100) / total;
+        	model.addAttribute("percent", percent);
+        }else{
         	model.addAttribute("expenseTotal", "---");
+        	model.addAttribute("percent", 100);
+        }
 
         webRequest.setAttribute("dailyBudgetId", dailyBudgetFindService.findBy(user.userId(), new DailyBudgetDate(simpleDateFormat.format(calendar.getTime()))).dailyBudgetId(), WebRequest.SCOPE_SESSION);
         webRequest.setAttribute("expenseDate", calendar, WebRequest.SCOPE_SESSION);

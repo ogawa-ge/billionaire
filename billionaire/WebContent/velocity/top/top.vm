@@ -19,7 +19,7 @@
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
 				<p>$!esc.html(${user.userName.value})さん、こんにちは！</p>
-				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button">ログアウト</a></p>
+				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
 		<div class="container">
@@ -63,7 +63,7 @@
 				<div class="col-sm-8">
 					<div class="row">
 						<div class="col-sm-12">
-							<a class="btn btn-success btn-block" href="$!esc.html(${link.contextURL})/expense/list" role="button">出費登録</a>
+							<a class="btn btn-success btn-block" href="$!esc.html(${link.contextURL})/expense/list" role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>　出費登録</a>
 						</div>
 					</div>
 					<div class="row">
@@ -80,13 +80,13 @@
 							<form id="nextMonth" action="${link.contextURL}/top/next" method="post"></form>
 							<div class="btn-group btn-group-justified margin" role="group">
 								<div class="btn-group" role="group">
-									<button type="submit" class="btn btn-primary" form="lastMonth">先月</button>
+									<button type="submit" class="btn btn-primary" form="lastMonth"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>　先月</button>
 								</div>
 								<div class="btn-group" role="group">
 									<button type="submit" class="btn btn-primary" form="thisMonth">今月</button>
 								</div>
 								<div class="btn-group" role="group">
-									<button type="submit" class="btn btn-primary" form="nextMonth">来月</button>
+									<button type="submit" class="btn btn-primary" form="nextMonth">来月　<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 						<div class="list-group">
 							<a class="list-group-item" href="${link.contextURL}/expense/list">出費管理・登録</a>
 							<a class="list-group-item" href="${link.contextURL}/savings_performance/list">貯金実績確認</a>
-							<a class="list-group-item disabled" ><del>システム設定管理</del></a>
+							<a class="list-group-item disabled" #*href="${link.contextURL}/setting"*#><del>システム設定管理</del></a>
 							<a class="list-group-item disabled" ><del>追加収入の管理</del></a>
 							<a class="list-group-item disabled" ><del>ユーザー情報変更</del></a>
 						</div>
@@ -108,29 +108,6 @@
 				</div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
-						<span class="sr-only">メニュー</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-
-				<div id="gnavi" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="${link.contextURL}/expense/list">出費管理・登録</a></li>
-						<li><a href="${link.contextURL}/savings_performance/list">貯金実績確認</a></li>
-						<li class="disabled"><a><del>システム設定管理</del></a></li>
-						<li class="disabled"><a><del>追加収入の管理</del></a></li>
-						<li class="disabled"><a><del>ユーザー情報変更</del></a></li>
-						<li><a href="${link.contextURL}/logout">ログアウト</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar_member.vm")
 	</body>
 </html>

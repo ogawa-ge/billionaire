@@ -12,7 +12,7 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<title>Billionaire - 固定費編集</title>
+		<title>Billionaire - システム設定編集 固定費</title>
 	</head>
 	<body>
 		<div class="jumbotron">

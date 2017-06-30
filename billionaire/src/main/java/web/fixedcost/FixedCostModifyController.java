@@ -37,7 +37,7 @@ public class FixedCostModifyController {
 	}
 
 	@RequestMapping(value="execute", method=RequestMethod.POST)
-	public String registerExecute(Model model, @Valid @ModelAttribute("fixedCost") FixedCost fixedCost, Errors errors){
+	public String registerExecute(Model model, @Valid @ModelAttribute("fixedCost") FixedCost fixedCost, Errors errors, WebRequest webRequest){
 
 		if(errors.hasErrors()){
 			model.addAttribute("fixedCost", fixedCostFindService.findBy(fixedCost.fixedCostId().value()));

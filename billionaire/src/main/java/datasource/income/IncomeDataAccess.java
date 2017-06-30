@@ -27,4 +27,9 @@ public class IncomeDataAccess implements IncomeRepository{
 		return incomeMapper.findAmount(userId);
 	}
 
+	@Override
+	public void modify(UserId userId, Income income) {
+		incomeMapper.modify(userId, income);
+	}
+
 }

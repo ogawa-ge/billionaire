@@ -39,8 +39,8 @@
 								#springFormHiddenInput("user.userName.value")
 								#springFormHiddenInput("user.userMail.value")
 								#springFormHiddenInput("user.userPassword.value")
-								<button type="submit" class="btn btn-primary col-sm-5 margin" formaction="${link.contextURL}/user_register/modify">修正する</a>
-								<button type="submit" class="btn btn-success col-sm-5 margin pull-right">登録完了</button>
+								<button type="submit" class="btn btn-primary col-sm-5 margin" formaction="${link.contextURL}/user_register/modify"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>　修正する</a>
+								<button type="submit" class="btn btn-success col-sm-5 margin pull-right"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>　登録完了</button>
 							</form>
 						</div>
 					</div>
@@ -48,12 +48,6 @@
 				<div class="col-sm-2"></div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar.vm")
 	</body>
 </html>

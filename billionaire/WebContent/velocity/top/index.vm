@@ -40,8 +40,8 @@
 					        <form id="user_register" action="${link.contextURL}/user_register" method="post"></form>
 
 							<p>
-								<button type="submit" class="btn btn-primary col-sm-5" form="user_register">新規会員登録</button>
-								<button type="submit" class="btn btn-primary pull-right col-sm-5" form="login">ログイン</button>
+								<button type="submit" class="btn btn-primary col-sm-5" form="user_register"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>　新規会員登録</button>
+								<button type="submit" class="btn btn-primary pull-right col-sm-5" form="login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　ログイン</button>
 							</p>
 
 						</div>
@@ -54,12 +54,6 @@
 				</div>
 			</div>
 		</div>
-		<nav id="nav" class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="${link.contextURL}/" class="navbar-brand">Billionaire</a>
-				</div>
-			</div>
-		</nav>
+		#parse("top/navbar.vm")
 	</body>
 </html>

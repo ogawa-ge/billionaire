@@ -12,13 +12,13 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    ##<!-- BootstrapのJS読み込み -->
 	    <script src="${link.contextURL}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<title>Billionaire - 初期設定2/3</title>
+		<title>Billionaire - システム設定編集 固定費</title>
 	</head>
 	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<h1><a href="${link.contextURL}/">Billionaire</a></h1>
-				<p>システムを始める前の初期設定（2/3）毎月の固定費の設定―リスト</p>
+				<p>システム設定編集 固定費リスト</p>
 				<p align="right"><a class="btn btn-primary btn-lg" href="${link.contextURL}/logout" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　ログアウト</a></p>
 			</div>
 		</div>
